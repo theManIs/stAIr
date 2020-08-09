@@ -24,8 +24,8 @@ namespace Assets.Scripts
         public HexCell[] HexCells;
 
         protected HexMesh HexMesh;
-        protected int MouseClickBlock = 0;
-        protected int InitMouseClickBlock = 25;
+//        protected int MouseClickBlock = 0;
+//        protected int InitMouseClickBlock = 25;
 
         void Awake()
         {
@@ -74,32 +74,31 @@ namespace Assets.Scripts
             label.text = hexCell.HexCoordinates.ToStringOnSeparateLines();
         }
 
-        void Update()
+//        void Update()
+//        {
+//            if (Input.GetMouseButton(0) && MouseClickBlock < 0)
+//            {
+//                HandleInput();
+//
+//                MouseClickBlock = InitMouseClickBlock;
+//            }
+//
+//            MouseClickBlock--;
+//        }
+
+//        void HandleInput()
+//        {
+//            Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+//            RaycastHit hit;
+//
+//            if (Physics.Raycast(inputRay, out hit))
+//            {
+//                TouchCell(hit.point);
+//            }
+//        }
+
+        public void TouchCell(Vector3 position)
         {
-            if (Input.GetMouseButton(0) && MouseClickBlock < 0)
-            {
-                HandleInput();
-
-                MouseClickBlock = InitMouseClickBlock;
-            }
-
-            MouseClickBlock--;
-        }
-
-        void HandleInput()
-        {
-            Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(inputRay, out hit))
-            {
-                TouchCell(hit.point, DefaultColor);
-            }
-        }
-
-        void TouchCell(Vector3 position, Color color)
-        {
-            ColorCell(position, color);
-
             position = transform.InverseTransformPoint(position);
             HexCoordinates coordinates = HexCoordinates.FromPosition(position);
             int index = coordinates.X + coordinates.Z * Width + coordinates.Z / 2;
@@ -116,6 +115,16 @@ namespace Assets.Scripts
             int index = coordinates.X + coordinates.Z * Width + coordinates.Z / 2;
             HexCell cell = HexCells[index];
             cell.Color = color;
+            HexMesh.Triangulate(HexCells);
+        }
+
+        public void ReleaseColorCell(Vector3 position)
+        {
+            position = transform.InverseTransformPoint(position);
+            HexCoordinates coordinates = HexCoordinates.FromPosition(position);
+            int index = coordinates.X + coordinates.Z * Width + coordinates.Z / 2;
+            HexCell cell = HexCells[index];
+            cell.Color = cell.DefaultColor;
             HexMesh.Triangulate(HexCells);
         }
     }

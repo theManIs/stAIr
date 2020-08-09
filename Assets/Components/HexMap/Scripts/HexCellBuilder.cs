@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Components.HexMap.Scripts;
+using UnityEngine;
 
 namespace Assets.Scripts
 {

@@ -5,7 +5,30 @@ using UnityEngine;
 
 public class HexCell : MonoBehaviour
 {
-    public HexCoordinates HexCoordinates;
+    #region Fields
 
-    public Color Color;
+    public HexCoordinates HexCoordinates;
+    public Color DefaultColor = default;
+
+    private Color _currentColor = default;
+
+    #endregion
+    
+    #region Properties
+
+    public Color Color
+    {
+        get => _currentColor;
+        set
+        {
+            if (DefaultColor == default)
+            {
+                DefaultColor = value;
+            }
+
+            _currentColor = value;
+        }
+    }
+
+    #endregion
 }
