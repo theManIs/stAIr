@@ -6,15 +6,44 @@ namespace Assets.Components.ArrowWaypointer.Scripts
 {
     public class WaypointArrow : MonoBehaviour
     {
-        public event Action<Vector3> EReleaseDestination;   
+        #region Fields
+
+        public event Action<Vector3> EReleaseDestination;
 
         public Vector3 DesiredPosition;
         public int MarkerSpeed = 1000;
         public int CloseRange = 10;
         public const int SpeedDivider = 1000;
+        public Transform PlacePointer;
 
         private readonly Queue<Vector3> _pointerRoadmap = new Queue<Vector3>();
         private float _timeProgress = 0;
+        private bool _go = false; 
+
+        #endregion
+
+
+        #region UnityMethods
+
+        protected void Update() => MoveIfDidNotGetDestination();
+
+        #endregion
+
+
+        #region Methods
+
+        public void InstantiateWaypointer(GameObject prefabWaypointer) =>
+            Instantiate(prefabWaypointer, PlacePointer.transform, false);
+
+        public void DClearDestination()
+        {
+            while (_pointerRoadmap.Count > 0)
+            {
+                EReleaseDestination?.Invoke(_pointerRoadmap.Dequeue());
+            }
+        }
+
+        public void GoTrue() => _go = true;
 
         public void SetDesiredPosition(Vector3 newPos)
         {
@@ -23,24 +52,23 @@ namespace Assets.Components.ArrowWaypointer.Scripts
             _pointerRoadmap.Enqueue(newPos);
         }
 
-        protected void Update()
-        {
-            MoveIfDidNotGetDestination();
-        }
-
         protected void MoveIfDidNotGetDestination()
         {
-            if (!HasReachedDestination() && HasDestination())
+            if (!HasReachedDestination() && HasDestination() && _go)
             {
                 MoveToDesignatedPosition();
             }
-            else if (HasDestination())
+            else if (HasDestination() && _go)
             {
                 ReleaseDestination();
-            } 
-            else if (!HasDestination() && HasItemsInQueue())
+            }
+            else if (!HasDestination() && HasItemsInQueue() && _go)
             {
                 DequeuePosition();
+            }
+            else
+            {
+                _go = false;
             }
         }
 
@@ -64,6 +92,8 @@ namespace Assets.Components.ArrowWaypointer.Scripts
 
         protected bool HasItemsInQueue() => _pointerRoadmap.Count > 0;
 
-        protected void DequeuePosition() => DesiredPosition = _pointerRoadmap.Dequeue();
+        protected void DequeuePosition() => DesiredPosition = _pointerRoadmap.Dequeue(); 
+
+        #endregion
     }
 }
