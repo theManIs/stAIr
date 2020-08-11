@@ -24,7 +24,7 @@ namespace Assets.Scripts
             if (Object.FindObjectOfType<HexMapEditor>())
             {
                 Color[] colorInUse = Object.FindObjectOfType<HexMapEditor>().Colors;
-                changedColor = colorInUse[Mathf.RoundToInt(Random.Range(0, colorInUse.Length - 1))];
+                changedColor = colorInUse[Mathf.RoundToInt(Random.Range(0, 3))];
             }
 
             return changedColor;

@@ -12,15 +12,23 @@ namespace Assets.Components.HexMap.Scripts
         public HexGrid HexGrid;
         public int InitMouseClickBlock = 25;
         public int MouseClickBlock = 0;
+        public int DefaultSecondIndexColor = 0;
 
         private Color _activeColor;
+        private Color _secondColor;
+        private Vector3 _lastHit = default;
 
         #endregion
 
 
         #region UnityMethods
 
-        void Awake() => SelectColor(DefaultIndexColor);
+        void Awake()
+        {
+            SelectColor(DefaultIndexColor);
+
+            _secondColor = Colors[DefaultSecondIndexColor];
+        }
 
         void Update() => HandleInputWithLocker();
 
@@ -38,6 +46,14 @@ namespace Assets.Components.HexMap.Scripts
             {
                 HexGrid.TouchCell(hit.point);
                 HexGrid.ColorCell(hit.point, _activeColor);
+
+
+                if (_lastHit != default && _lastHit != HexGrid.LastPick)
+                {
+                    HexGrid.ColorCell(_lastHit, _secondColor);
+                }
+
+                _lastHit = HexGrid.LastPick;
             }
         }
 

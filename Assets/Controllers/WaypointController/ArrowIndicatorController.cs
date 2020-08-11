@@ -12,7 +12,7 @@ namespace Assets.Controllers.WaypointController
         public HexGrid HexGrid;
         public GameObject PrefabWaypointer;
 
-        private Vector3 _lastPick; 
+        private Vector3 _lastPick = default; 
 
         #endregion
 
