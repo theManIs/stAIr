@@ -15,15 +15,24 @@ namespace Assets.Components.ArrowWaypointer.Scripts
         public int CloseRange = 10;
         public const int SpeedDivider = 1000;
         public Transform PlacePointer;
+        public GameObject PrefabWaypointer;
 
         private readonly Queue<Vector3> _pointerRoadmap = new Queue<Vector3>();
         private float _timeProgress = 0;
-        private bool _go = false; 
+        private bool _go = false;
 
         #endregion
 
 
         #region UnityMethods
+
+        protected void Start()
+        {
+            if (PrefabWaypointer)
+            {
+                InstantiateWaypointer(PrefabWaypointer);
+            }
+        }
 
         protected void Update() => MoveIfDidNotGetDestination();
 
@@ -31,6 +40,8 @@ namespace Assets.Components.ArrowWaypointer.Scripts
 
 
         #region Methods
+
+        public Queue<Vector3> GetMovementQueue() => _pointerRoadmap;
 
         public void InstantiateWaypointer(GameObject prefabWaypointer) =>
             Instantiate(prefabWaypointer, PlacePointer.transform, false);

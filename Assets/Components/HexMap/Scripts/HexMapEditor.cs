@@ -16,7 +16,7 @@ namespace Assets.Components.HexMap.Scripts
 
         private Color _activeColor;
         private Color _secondColor;
-        private Vector3 _lastHit = default;
+        public Vector3 _lastHit = default;
 
         #endregion
 
@@ -37,7 +37,7 @@ namespace Assets.Components.HexMap.Scripts
 
         #region Methods
 
-        void HandleInput()
+        public void HandleInput()
         {
             Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -57,16 +57,44 @@ namespace Assets.Components.HexMap.Scripts
             }
         }
 
+        public void HandleInputHide(Vector3 hiddenHexCell)
+        {
+            Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(inputRay, out hit))
+            {
+                HexGrid.TouchCell(hit.point);
+
+                if (!(hiddenHexCell.x.Equals(HexGrid.LastPick.x) && hiddenHexCell.z.Equals(HexGrid.LastPick.z)))
+                {
+                    Debug.Log(hiddenHexCell.x.Equals(HexGrid.LastPick.x) + $" {hiddenHexCell.x} {HexGrid.LastPick.x}");
+                    Debug.Log(hiddenHexCell.z.Equals(HexGrid.LastPick.z) + $" {hiddenHexCell.z} {HexGrid.LastPick.z}");
+                    Debug.Log(hiddenHexCell + " " + HexGrid.LastPick);
+                    Debug.Log(_secondColor);
+
+                    HexGrid.ColorCell(hit.point, _activeColor);
+
+                    if (_lastHit != default && _lastHit != HexGrid.LastPick)
+                    {
+                        HexGrid.ColorCell(_lastHit, _secondColor);
+                    }
+                }
+
+                _lastHit = HexGrid.LastPick;
+            }
+        }
+
         protected void HandleInputWithLocker()
         {
-            if (Input.GetMouseButton(0) && MouseClickBlock < 0)
-            {
-                HandleInput();
-
-                MouseClickBlock = InitMouseClickBlock;
-            }
-
-            MouseClickBlock--;
+//            if (Input.GetMouseButton(0) && MouseClickBlock < 0)
+//            {
+//                HandleInput();
+//
+//                MouseClickBlock = InitMouseClickBlock;
+//            }
+//
+//            MouseClickBlock--;
         }
 
         public void SelectColor(int index)

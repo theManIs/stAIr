@@ -89,6 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400002}
   - component: {fileID: 113494260497475928}
+  - component: {fileID: 9113278434520362922}
   m_Layer: 0
   m_Name: Waypoint Arrow
   m_TagString: Untagged
@@ -124,3 +125,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DesiredPosition: {x: 0, y: 0, z: 0}
+  MarkerSpeed: 1000
+  CloseRange: 10
+  PlacePointer: {fileID: 0}
+  PrefabWaypointer: {fileID: 0}
+--- !u!114 &9113278434520362922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973afc0075d28dc4c95811781604868b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineSize: 1
+  _spriteRenderer: {fileID: 0}
+  _isSelected: 0
+  index: -1
