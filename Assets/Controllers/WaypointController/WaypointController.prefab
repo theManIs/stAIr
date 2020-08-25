@@ -45,3 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaypointArrow: {fileID: 0}
   HexGrid: {fileID: 0}
+  HexEditor: {fileID: 0}
+  TurnShifterController: {fileID: 0}
+  FindRouteController: {fileID: 0}

@@ -1,4 +1,5 @@
-﻿using Assets.Scripts;
+﻿using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 
 namespace Assets.Components.HexMap.Scripts
@@ -10,13 +11,14 @@ namespace Assets.Components.HexMap.Scripts
         public Color[] Colors;
         public int DefaultIndexColor;
         public HexGrid HexGrid;
-        public int InitMouseClickBlock = 25;
-        public int MouseClickBlock = 0;
         public int DefaultSecondIndexColor = 0;
+        public int TheThirdColorIndex = 5;
 
         private Color _activeColor;
         private Color _secondColor;
+        private Color _thirdColor;
         public Vector3 _lastHit = default;
+        private List<Vector3> _lastCells = new List<Vector3>();
 
         #endregion
 
@@ -25,12 +27,10 @@ namespace Assets.Components.HexMap.Scripts
 
         void Awake()
         {
-            SelectColor(DefaultIndexColor);
-
+            _activeColor = Colors[DefaultIndexColor];
             _secondColor = Colors[DefaultSecondIndexColor];
+            _thirdColor = Colors[TheThirdColorIndex];
         }
-
-        void Update() => HandleInputWithLocker();
 
         #endregion
 
@@ -57,6 +57,21 @@ namespace Assets.Components.HexMap.Scripts
             }
         }
 
+        public void ColorRange(Vector3[] newPositioning)
+        {
+            _lastCells.AddRange(newPositioning);
+
+            foreach (var cell in _lastCells)
+            {
+                HexGrid.ColorCell(cell, _thirdColor);
+            }
+        }
+
+        public void ClearRange()
+        {
+            _lastCells.Clear();
+        }
+
         public void HandleInputHide(Vector3 hiddenHexCell)
         {
             Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -68,10 +83,10 @@ namespace Assets.Components.HexMap.Scripts
 
                 if (!(hiddenHexCell.x.Equals(HexGrid.LastPick.x) && hiddenHexCell.z.Equals(HexGrid.LastPick.z)))
                 {
-                    Debug.Log(hiddenHexCell.x.Equals(HexGrid.LastPick.x) + $" {hiddenHexCell.x} {HexGrid.LastPick.x}");
-                    Debug.Log(hiddenHexCell.z.Equals(HexGrid.LastPick.z) + $" {hiddenHexCell.z} {HexGrid.LastPick.z}");
-                    Debug.Log(hiddenHexCell + " " + HexGrid.LastPick);
-                    Debug.Log(_secondColor);
+//                    Debug.Log(hiddenHexCell.x.Equals(HexGrid.LastPick.x) + $" {hiddenHexCell.x} {HexGrid.LastPick.x}");
+//                    Debug.Log(hiddenHexCell.z.Equals(HexGrid.LastPick.z) + $" {hiddenHexCell.z} {HexGrid.LastPick.z}");
+//                    Debug.Log(hiddenHexCell + " " + HexGrid.LastPick);
+//                    Debug.Log(_secondColor);
 
                     HexGrid.ColorCell(hit.point, _activeColor);
 
@@ -84,23 +99,6 @@ namespace Assets.Components.HexMap.Scripts
                 _lastHit = HexGrid.LastPick;
             }
         }
-
-        protected void HandleInputWithLocker()
-        {
-//            if (Input.GetMouseButton(0) && MouseClickBlock < 0)
-//            {
-//                HandleInput();
-//
-//                MouseClickBlock = InitMouseClickBlock;
-//            }
-//
-//            MouseClickBlock--;
-        }
-
-        public void SelectColor(int index)
-        {
-            _activeColor = Colors[index];
-        } 
 
         #endregion
     }

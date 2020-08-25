@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1855d64fbab27314d9199facef5cd515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Width: 12
-  Height: 10
+  Width: 25
+  Height: 25
   HexCell: {fileID: 5036305957948399900, guid: 597c650dba52ff144820a82850aae6a3, type: 3}
   GlobalCanvas: {fileID: 240938585}
   CellLabel: {fileID: 298462560301566380, guid: b63681db9fd19ed44b8db4c8bbb8d3ec,

@@ -54,13 +54,24 @@ namespace Assets.Components.ArrowWaypointer.Scripts
             }
         }
 
-        public void GoTrue() => _go = true;
+        public void GoTrue()
+        {
+            _go = true;
+        }
 
         public void SetDesiredPosition(Vector3 newPos)
         {
             newPos.y = transform.position.y;
 
             _pointerRoadmap.Enqueue(newPos);
+        }
+
+        public void SetQueuePositions(Vector3[] queueOfPositions)
+        {
+            foreach (Vector3 queueOfPosition in queueOfPositions)
+            {
+                SetDesiredPosition(queueOfPosition);
+            }
         }
 
         protected void MoveIfDidNotGetDestination()

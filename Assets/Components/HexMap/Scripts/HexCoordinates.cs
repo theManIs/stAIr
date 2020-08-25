@@ -80,5 +80,9 @@ namespace Assets.Scripts
             return new HexCoordinates(iX, iZ);
         }
 
+        public int ToIndexIfWith(int hexWidth)
+        {
+            return this.X + this.Z * hexWidth + this.Z / 2;
+        }
     }
 }

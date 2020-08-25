@@ -27,6 +27,9 @@ namespace Assets.Controllers.TurnShifterController
                 }
             }
 
+            LastPickedWaypointArrow = default;
+            HasSelectionBefore = false;
+
             return null;
         }
     }
