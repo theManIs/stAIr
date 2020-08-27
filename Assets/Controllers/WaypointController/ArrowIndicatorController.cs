@@ -39,6 +39,7 @@ namespace Assets.Controllers.WaypointController
                 {
                     AttachDetachCellRelease();
 
+                    _lastPick = _lastPick != default ? _lastPick : WaypointArrow.transform.position;
                     Vector3[] newPositioning = FindRouteController.GetRoute(_lastPick);
 
                     if (TurnShifterController.HasSelectionBefore)
@@ -46,7 +47,7 @@ namespace Assets.Controllers.WaypointController
                         HexEditor.ColorRange(newPositioning);
                         HexEditor.HandleInput();
                     }
-
+                    
                     if (HexGrid.LastPick != _lastPick)
                     {
                         _lastPick = HexGrid.LastPick;
@@ -61,6 +62,7 @@ namespace Assets.Controllers.WaypointController
                         HexEditor.ClearRange();
 
                         _goMode = true;
+//                        _lastPick = default;
                     }
                 }
                 else
