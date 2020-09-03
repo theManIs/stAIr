@@ -37,7 +37,27 @@ namespace Assets.Components.HexMap.Scripts
 
         #region Methods
 
-        public void HandleInput()
+//        public void HandleInput(Vector3 lastPick)
+//        {
+//            Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+//            RaycastHit hit;
+//
+//            if (Physics.Raycast(inputRay, out hit))
+//            {
+//                HexGrid.TouchCell(hit.point);
+//                HexGrid.ColorCell(hit.point, _activeColor);
+//
+//                Debug.Log(lastPick + " " + HexGrid.LastPick);
+//                if (lastPick != default && lastPick != HexGrid.LastPick)
+//                {
+//                    HexGrid.ColorCell(lastPick, _secondColor);
+//                }
+//
+////                _lastHit = HexGrid.LastPick;
+//            }
+//        }
+
+        public Vector3 TouchingCell()
         {
             Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -45,16 +65,28 @@ namespace Assets.Components.HexMap.Scripts
             if (Physics.Raycast(inputRay, out hit))
             {
                 HexGrid.TouchCell(hit.point);
-                HexGrid.ColorCell(hit.point, _activeColor);
 
-
-                if (_lastHit != default && _lastHit != HexGrid.LastPick)
-                {
-                    HexGrid.ColorCell(_lastHit, _secondColor);
-                }
-
-                _lastHit = HexGrid.LastPick;
+                return hit.point;
             }
+
+            return default;
+        }
+
+        public void ColorTargetActive()
+        {
+            Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(inputRay, out hit))
+            {
+//                HexGrid.TouchCell(hit.point);
+                HexGrid.ColorCell(hit.point, _activeColor);
+            }
+        }
+
+        public void ColorTargetSecond(Vector3 target)
+        {
+            HexGrid.ColorCell(target, _secondColor);
         }
 
         public void ColorRange(Vector3[] newPositioning)
@@ -72,33 +104,33 @@ namespace Assets.Components.HexMap.Scripts
             _lastCells.Clear();
         }
 
-        public void HandleInputHide(Vector3 hiddenHexCell)
-        {
-            Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(inputRay, out hit))
-            {
-                HexGrid.TouchCell(hit.point);
-
-                if (!(hiddenHexCell.x.Equals(HexGrid.LastPick.x) && hiddenHexCell.z.Equals(HexGrid.LastPick.z)))
-                {
-//                    Debug.Log(hiddenHexCell.x.Equals(HexGrid.LastPick.x) + $" {hiddenHexCell.x} {HexGrid.LastPick.x}");
-//                    Debug.Log(hiddenHexCell.z.Equals(HexGrid.LastPick.z) + $" {hiddenHexCell.z} {HexGrid.LastPick.z}");
-//                    Debug.Log(hiddenHexCell + " " + HexGrid.LastPick);
-//                    Debug.Log(_secondColor);
-
-                    HexGrid.ColorCell(hit.point, _activeColor);
-
-                    if (_lastHit != default && _lastHit != HexGrid.LastPick)
-                    {
-                        HexGrid.ColorCell(_lastHit, _secondColor);
-                    }
-                }
-
-                _lastHit = HexGrid.LastPick;
-            }
-        }
+//        public void HandleInputHide(Vector3 hiddenHexCell)
+//        {
+//            Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+//            RaycastHit hit;
+//
+//            if (Physics.Raycast(inputRay, out hit))
+//            {
+//                HexGrid.TouchCell(hit.point);
+//
+//                if (!(hiddenHexCell.x.Equals(HexGrid.LastPick.x) && hiddenHexCell.z.Equals(HexGrid.LastPick.z)))
+//                {
+////                    Debug.Log(hiddenHexCell.x.Equals(HexGrid.LastPick.x) + $" {hiddenHexCell.x} {HexGrid.LastPick.x}");
+////                    Debug.Log(hiddenHexCell.z.Equals(HexGrid.LastPick.z) + $" {hiddenHexCell.z} {HexGrid.LastPick.z}");
+////                    Debug.Log(hiddenHexCell + " " + HexGrid.LastPick);
+////                    Debug.Log(_secondColor);
+//
+//                    HexGrid.ColorCell(hit.point, _activeColor);
+//
+//                    if (_lastHit != default && _lastHit != HexGrid.LastPick)
+//                    {
+//                        HexGrid.ColorCell(_lastHit, _secondColor);
+//                    }
+//                }
+//
+//                _lastHit = HexGrid.LastPick;
+//            }
+//        }
 
         #endregion
     }

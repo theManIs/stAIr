@@ -53,10 +53,10 @@ MonoBehaviour:
     RotationZ: 0
     ClampMinX: 155
     ClampMinY: 165.7
-    ClampMinZ: 80
+    ClampMinZ: 40
     ClampMaxX: 267
     ClampMaxY: 165.7
-    ClampMaxZ: 281
+    ClampMaxZ: 325
   AttachedCamera: {fileID: 0}
   CameraAcceleration: 30
   ActiveCameraState: 0

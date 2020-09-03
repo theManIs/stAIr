@@ -33,7 +33,18 @@ namespace Assets.Components.FindRoute.Scripts
 
         public Vector3[] GetRoute(Vector3 startPoint)
         {
-            return FindRoute.RoutePositions(startPoint).ToArray();
+            List<Vector3> pathVector3 = FindRoute.RoutePositions(startPoint);
+            List<Vector3> newPath = new List<Vector3>();
+
+            for (int i = 0; i < pathVector3.Count; i++)
+            {
+                if (i != pathVector3.Count - 1)
+                {
+                    newPath.Add(pathVector3[i]);
+                }
+            }
+
+            return newPath.ToArray();
         }
 
 

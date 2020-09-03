@@ -42,16 +42,26 @@ namespace Assets.Components.ArrowWaypointer.Scripts
         #region Methods
 
         public Queue<Vector3> GetMovementQueue() => _pointerRoadmap;
+        public void ClearMovementQueue() => _pointerRoadmap.Clear();
 
         public void InstantiateWaypointer(GameObject prefabWaypointer) =>
             Instantiate(prefabWaypointer, PlacePointer.transform, false);
 
         public void DClearDestination()
         {
-            while (_pointerRoadmap.Count > 0)
+//            Queue<Vector3> localRoadMap = new Queue<Vector3>(_pointerRoadmap);
+            int queueCount = _pointerRoadmap.Count;
+//            _pointerRoadmap.Clear();
+
+            for (int i = 0; i < queueCount; i++)
             {
                 EReleaseDestination?.Invoke(_pointerRoadmap.Dequeue());
             }
+
+//            while (localRoadMap.Count > 0)
+//            {
+//                EReleaseDestination?.Invoke(localRoadMap.Dequeue());
+//            }
         }
 
         public void GoTrue()
