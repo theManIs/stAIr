@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Components.UserClass.Scripts;
 using UnityEngine;
 
 namespace Assets.Components.ArrowWaypointer.Scripts

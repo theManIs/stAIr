@@ -23,7 +23,6 @@ namespace Assets.Controllers.WaypointController
         private Vector3 _nextTrailPoint;
         private List<Vector3> _lastCells = new List<Vector3>();
         private bool _goMode;
-        private bool _wasSelectedThisFrame = false;
         private bool _startProcessing;
         private WaypointArrow _waypointArrow = null;
 
