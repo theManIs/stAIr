@@ -1,26 +1,32 @@
 ﻿using System;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Components.UserClass.Scripts
 {
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/CharacterPrefs", order = 1)]
     public class CharacterPreferences : ScriptableObject
     {
-
+        [Header("Fixed")]
         public string CharacterOfficialName;
+        public Sprite CharacterPortrait;
         public float BaseAim;
         public float BaseDamage;
         public float BaseDodge;
         public float BaseArmor;
-        public float BaseHp;
-        public float BaseShield;
-        public float BaseAmoCount;
         public float BaseCritChance;
         public float BaseDetectionArea;
+        public float BaseAttackRange;
+
+        [Header("Consumables")]
+        public float BaseHealth;
+        public float BaseShield;
         public float BaseMovePoints;
         public float BaseActionPoints;
+        public float BaseAmoCount;
 
+        [Header("Types")]
         public float BaseFireRateType;
         public float BaseArmorType;
         public float BaseWeaponType;

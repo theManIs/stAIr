@@ -13,16 +13,19 @@ MonoBehaviour:
   m_Name: EnvoyEnemy
   m_EditorClassIdentifier: 
   CharacterOfficialName: "\u041F\u043E\u0441\u043B\u0430\u043D\u043D\u0438\u043A"
+  CharacterPortrait: {fileID: 21300000, guid: 31ab49c6a63e59442961e2fbffae0c22, type: 3}
   BaseAim: 70
   BaseDamage: 3
   BaseDodge: 0
   BaseArmor: 0
-  BaseHp: 8
-  BaseShield: 0
-  BaseAmoCount: 0
   BaseCritChance: 0
   BaseDetectionArea: 0
-  BaseMovePoints: 0
+  BaseAttackRange: 0
+  BaseHealth: 5
+  BaseShield: 15
+  BaseMovePoints: 4
+  BaseActionPoints: 0
+  BaseAmoCount: 0
   BaseFireRateType: 0
   BaseArmorType: 0
   BaseWeaponType: 0

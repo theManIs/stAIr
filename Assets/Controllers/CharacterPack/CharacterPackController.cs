@@ -32,19 +32,16 @@ namespace Assets.Controllers.CharacterPack
             if (_selectCommonUser)
             {
                 GlobCanvasController.NameText = _selectCommonUser.UserPreferences.CharacterOfficialName;
-//                GlobCanvasController.HpText = "HP " + Convert.ToString(_selectCommonUser.UserPreferences.BaseHp, CultureInfo.InvariantCulture);
-//                GlobCanvasController.DamageText = "Damage " + Convert.ToString(_selectCommonUser.UserPreferences.BaseDamage, CultureInfo.InvariantCulture);
-//                GlobCanvasController.ArmorText = "Armor " + Convert.ToString(_selectCommonUser.UserPreferences.BaseArmor, CultureInfo.InvariantCulture);
-                GlobCanvasController.HpText = "HP " + _selectCommonUser.UserPreferences.GetString("BaseHp");
-                GlobCanvasController.DamageText = "Damage " + _selectCommonUser.UserPreferences.GetString("BaseDamage");
-                GlobCanvasController.ArmorText = "Armor " + _selectCommonUser.UserPreferences.GetString("BaseArmor");
+                GlobCanvasController.CharacterPortrait = _selectCommonUser.UserPreferences.CharacterPortrait;
+                GlobCanvasController.HealthBar = _selectCommonUser.ActualHealth / _selectCommonUser.UserPreferences.BaseHealth * 100;
+                GlobCanvasController.ShieldBar = _selectCommonUser.ActualShield / _selectCommonUser.UserPreferences.BaseShield * 100;
+                GlobCanvasController.MovementBar = _selectCommonUser.ActualMovePoints / _selectCommonUser.UserPreferences.BaseMovePoints * 100;
+
+                GlobCanvasController.EnableCharacterPanel();
             }
             else
             {
-                GlobCanvasController.HpText = "";
-                GlobCanvasController.NameText = "";
-                GlobCanvasController.DamageText = "";
-                GlobCanvasController.ArmorText = "";
+               GlobCanvasController.DisableCharacterPanel();;
             }
         }
 
