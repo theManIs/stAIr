@@ -8,25 +8,42 @@ namespace Assets.Controllers.GlobalCanvas
         public void DisableCharacterPanel()
         {
             _nameText.gameObject.SetActive(false);
+            _characterAbilities.gameObject.SetActive(false);
             _characterPortrait.gameObject.SetActive(false);
             _healthBar.gameObject.SetActive(false);
             _shieldBar.gameObject.SetActive(false);
             _movementBar.gameObject.SetActive(false);
             _pulseBar.gameObject.SetActive(false);
+            _weaponAvatar.gameObject.SetActive(false);
+            _fireRate.gameObject.SetActive(false);
+            _weaponAim.gameObject.SetActive(false);
+            _weaponDamage.gameObject.SetActive(false);
+            _amoCount.gameObject.SetActive(false);
+            _consumableItems.gameObject.SetActive(false);
         }
 
         public void EnableCharacterPanel()
         {
             _nameText.gameObject.SetActive(true);
+            _characterAbilities.gameObject.SetActive(true);
             _characterPortrait.gameObject.SetActive(true);
             _healthBar.gameObject.SetActive(true);
             _shieldBar.gameObject.SetActive(true);
             _movementBar.gameObject.SetActive(true);
             _pulseBar.gameObject.SetActive(true);
+            _weaponAvatar.gameObject.SetActive(true);
+            _fireRate.gameObject.SetActive(true);
+            _weaponAim.gameObject.SetActive(true);
+            _weaponDamage.gameObject.SetActive(true);
+            _amoCount.gameObject.SetActive(true);
+            _consumableItems.gameObject.SetActive(true);
         }
 
         [SerializeField]
-        private Text _hpText = default;
+        private Image _characterAbilities;
+
+        [SerializeField]
+        private Text _nameText = default;
         public string NameText
         {
             get => _nameText.text;
@@ -79,36 +96,53 @@ namespace Assets.Controllers.GlobalCanvas
             set => _pulseBar.value = value;
         }
 
-        public string HpText
+        [SerializeField]
+        private Image _weaponAvatar;
+        public Sprite WeaponAvatar
         {
-            get => _hpText.text;
+            get => _weaponAvatar.sprite;
 
-            set => _hpText.text = value;
-        }
-
-
-        public string ArmorText
-        {
-            get => _armorText.text;
-
-            set => _armorText.text = value;
-        }
-
-        public string DamageText
-        {
-            get => _damageText.text;
-
-            set => _damageText.text = value;
+            set => _weaponAvatar.sprite = value;
         }
 
         [SerializeField]
-        private Text _nameText = default;
+        private Text _fireRate = default;
+        public string FireRate
+        {
+            get => _fireRate.text;
+
+            set => _fireRate.text = value;
+        }
 
         [SerializeField]
-        private Text _armorText = default;
+        private Text _weaponAim = default;
+        public string WeaponAim
+        {
+            get => _weaponAim.text;
+
+            set => _weaponAim.text = value;
+        }
 
         [SerializeField]
-        private Text _damageText = default;
+        private Text _weaponDamage = default;
+        public string WeaponDamage
+        {
+            get => _weaponDamage.text;
+
+            set => _weaponDamage.text = value;
+        }
+
+        [SerializeField]
+        private Text _amoCount = default;
+        public string AmoCount
+        {
+            get => _amoCount.text;
+
+            set => _amoCount.text = value;
+        }
+
+        [SerializeField]
+        private Image _consumableItems;
 
     }
 }

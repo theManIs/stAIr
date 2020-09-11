@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Assets.Static;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ namespace Assets.Components.UserClass.Scripts
         [Header("Fixed")]
         public string CharacterOfficialName;
         public Sprite CharacterPortrait;
+        public Sprite WeaponBaseAvatar;
         public float BaseAim;
         public float BaseDamage;
         public float BaseDodge;
@@ -27,7 +29,7 @@ namespace Assets.Components.UserClass.Scripts
         public float BaseAmoCount;
 
         [Header("Types")]
-        public float BaseFireRateType;
+        public FireRateType BaseFireRateType = FireRateType.Нет;
         public float BaseArmorType;
         public float BaseWeaponType;
 
