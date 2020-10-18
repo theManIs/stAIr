@@ -30,3 +30,4 @@ MonoBehaviour:
   BaseFireRateType: 1
   BaseArmorType: 0
   BaseWeaponType: 0
+  TeamType: 2

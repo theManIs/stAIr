@@ -38,7 +38,7 @@ namespace Assets.Controllers.CharacterPack
                 GlobCanvasController.ShieldBar = _selectCommonUser.ActualShield / _selectCommonUser.UserPreferences.BaseShield * 100;
                 GlobCanvasController.WeaponAvatar = _selectCommonUser.UserPreferences.WeaponBaseAvatar;
                 GlobCanvasController.MovementBar = _selectCommonUser.ActualMovePoints / _selectCommonUser.UserPreferences.BaseMovePoints * 100;
-                GlobCanvasController.FireRate = Convert.ToString(_selectCommonUser.UserPreferences.BaseFireRateType);
+                GlobCanvasController.WeaponType = Convert.ToString(_selectCommonUser.UserPreferences.BaseWeaponType);
                 GlobCanvasController.WeaponDamage = _selectCommonUser.UserPreferences.GetString("BaseDamage") + "у";
                 GlobCanvasController.WeaponAim = _selectCommonUser.UserPreferences.GetString("BaseAim") + "т";
                 GlobCanvasController.AmoCount = _selectCommonUser.UserPreferences.GetString("BaseAmoCount");

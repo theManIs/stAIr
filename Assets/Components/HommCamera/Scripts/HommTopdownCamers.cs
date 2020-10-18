@@ -8,6 +8,7 @@ namespace Assets.Components.HommCamera.Scripts
         public Camera AttachedCamera;
         public float CameraAcceleration = 1f;
         public int ActiveCameraState = 0;
+        public bool CanMove = true;
 
         private Vector3 _desiredVector3 = Vector3.zero;
 
@@ -16,12 +17,16 @@ namespace Assets.Components.HommCamera.Scripts
         void Start()
         {
             _desiredVector3 = AttachedCamera.transform.position;
+            _desiredVector3.x = PositioningVector[ActiveCameraState].TransformX;
+            _desiredVector3.y = PositioningVector[ActiveCameraState].TransformY;
+            _desiredVector3.z = PositioningVector[ActiveCameraState].TransformZ;
+            AttachedCamera.transform.position = _desiredVector3;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (AttachedCamera)
+            if (CanMove &&  AttachedCamera)
             {
                 float h = Input.GetAxis("Horizontal");
                 float v = Input.GetAxis("Vertical");

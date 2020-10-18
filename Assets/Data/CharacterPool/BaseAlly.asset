@@ -10,23 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7864f0c03af94694a8c453f0a7f89d00, type: 3}
-  m_Name: InnocentEnemy
+  m_Name: BaseAlly
   m_EditorClassIdentifier: 
   CharacterOfficialName: "\u041D\u0435\u0432\u0438\u043D\u043D\u044B\u0439"
   CharacterPortrait: {fileID: 21300000, guid: 53580004736a01d4b90baaf259ec054c, type: 3}
   WeaponBaseAvatar: {fileID: 21300000, guid: 43c415f3d281610498077c9d64a69ee1, type: 3}
   BaseAim: 70
-  BaseDamage: 6
-  BaseDodge: 0
+  BaseDamage: 4
+  BaseDodge: 34
   BaseArmor: 1
   BaseCritChance: 0
   BaseDetectionArea: 0
-  BaseAttackRange: 0
+  BaseAttackRange: 4
   BaseHealth: 4
   BaseShield: 10
   BaseMovePoints: 3
   BaseActionPoints: 0
-  BaseAmoCount: 3
+  BaseAmoCount: 2
   BaseFireRateType: 2
   BaseArmorType: 0
-  BaseWeaponType: 0
+  BaseWeaponType: 1
+  BaseTeamType: 2

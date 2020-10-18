@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Assets.Components.WeaponsStock.Scripts;
 using Assets.Static;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,7 +32,9 @@ namespace Assets.Components.UserClass.Scripts
         [Header("Types")]
         public FireRateType BaseFireRateType = FireRateType.Нет;
         public float BaseArmorType;
-        public float BaseWeaponType;
+        public WeaponType BaseWeaponType = WeaponType.None;
+        public TeamType BaseTeamType = TeamType.None;
+
 
         public string GetString(string valueName)
         {

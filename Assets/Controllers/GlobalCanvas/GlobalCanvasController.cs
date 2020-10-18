@@ -107,7 +107,7 @@ namespace Assets.Controllers.GlobalCanvas
 
         [SerializeField]
         private Text _fireRate = default;
-        public string FireRate
+        public string WeaponType
         {
             get => _fireRate.text;
 
@@ -144,5 +144,38 @@ namespace Assets.Controllers.GlobalCanvas
         [SerializeField]
         private Image _consumableItems;
 
+        [SerializeField]
+        private Text _openFireHotKey = default;
+        public string OpenFireHotKey
+        {
+            get => _openFireHotKey.text;
+
+            set => _openFireHotKey.text = value;
+        }
+
+        [SerializeField]
+        private RectTransform _accuracyPanel = default;
+        public Vector3 AccuracyPanel
+        {
+            get => _accuracyPanel.position;
+
+            set => _accuracyPanel.position = value;
+        }
+        public bool AccuracyPanelActive
+        {
+            get => _accuracyPanel.gameObject.activeSelf;
+
+            set => _accuracyPanel.gameObject.SetActive(value);
+        }
+
+
+        [SerializeField]
+        private Text _accuracyText = default;
+        public string AccuracyText
+        {
+            get => _accuracyText.text;
+
+            set => _accuracyText.text = value;
+        }
     }
 }
