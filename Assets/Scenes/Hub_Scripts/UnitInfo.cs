@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using CometUI;
+using Model;
 
 namespace Hub_UI
 {
@@ -31,12 +32,12 @@ namespace Hub_UI
             Set(txCrit, unit.CriticalChance.ToString("0."));
             Set(txMoving, unit.Moving.ToString("0."));
 
-            BuildTraitIcon(imTrait0, unit.Traits[0]);
-            BuildTraitIcon(imTrait1, unit.Traits[1]);
-            BuildTraitIcon(imTrait2, unit.Traits[2]);
+            BuildTraitIcon(imTrait0, unit.Perks[0]);
+            BuildTraitIcon(imTrait1, unit.Perks[1]);
+            BuildTraitIcon(imTrait2, unit.Perks[2]);
         }
 
-        private void BuildTraitIcon(Image im, PersonTrait trait)
+        private void BuildTraitIcon(Image im, Perk trait)
         {
             var tt = im.GetComponent<Tooltip>();
             tt.TextLeft = "<b>" + trait.Name + "</b>\r\n" + trait.Desc.Highlight();

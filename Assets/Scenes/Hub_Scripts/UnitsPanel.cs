@@ -12,7 +12,7 @@ namespace Hub_UI
         {
             //subscribe buttons or events here
             Build();
-            Bus.Units.Subscribe(this, Rebuild).CallWhenInactive();
+            Bus.PlayerUnitsChanged.Subscribe(this, Rebuild).CallWhenInactive();
         }
         
         protected override void OnBuild(bool isFirstBuild)
@@ -20,7 +20,7 @@ namespace Hub_UI
             //copy data to UI controls here
             DestroyDynamicallyCreatedChildren();
             //
-            foreach (var unit in Bus.Units.Value)
+            foreach (var unit in Player.Instance.Units)
             {
                 var view = Instantiate(UnitButton);
                 view.gameObject.SetActive(true);

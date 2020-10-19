@@ -18,8 +18,10 @@ namespace Hub_UI
         {
             unit.IsSold = true;
             Bus.UnitsToSell.Publish(Bus.UnitsToSell.Value);
-            Bus.Units.Value.Add(unit);
-            Bus.Units.Publish(Bus.Units);
+
+            Player.Instance.Units.Add(unit);
+            Bus.PlayerUnitsChanged += true;
+
             Close();
         }
 

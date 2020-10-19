@@ -201,7 +201,7 @@ PrefabInstance:
     - target: {fileID: 9193626154069737555, guid: 6bc058c687050c641979efee6b311a9a,
         type: 3}
       propertyPath: SignatureOfBuildMethod
-      value: Unit unit, bool isActive
+      value: Model.Unit unit, bool isActive
       objectReference: {fileID: 0}
     - target: {fileID: 9193626154069737566, guid: 6bc058c687050c641979efee6b311a9a,
         type: 3}
@@ -1288,6 +1288,9 @@ MonoBehaviour:
   SuppressBack: 0
   CreateCanvas: 1
   btBuy: {fileID: 0}
+  btMission: {fileID: 0}
+  btShipUpgrade: {fileID: 0}
+  btSettings: {fileID: 0}
   BuyPanel: {fileID: 0}
 --- !u!114 &346551431
 MonoBehaviour:
@@ -2032,6 +2035,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pnUnitInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727174424128620088, guid: a59ff0d6e0ea4f94eb871a205020a308,
+        type: 3}
+      propertyPath: SignatureOfBuildMethod
+      value: Model.Unit unit
       objectReference: {fileID: 0}
     - target: {fileID: 3847023937096099804, guid: a59ff0d6e0ea4f94eb871a205020a308,
         type: 3}
@@ -2868,7 +2876,7 @@ MonoBehaviour:
   FullscreenFadePrefab: {fileID: 0}
   BackPrority: 0
   DragMode: 0
-  SignatureOfBuildMethod: Unit unit
+  SignatureOfBuildMethod: Model.Unit unit
   ButtonsCallOnChanged: 1
   OnChangedCallRebuild: 1
   SuppressAnyGesturesForOwners: 0
@@ -3071,7 +3079,7 @@ MonoBehaviour:
   FullscreenFadePrefab: {fileID: 0}
   BackPrority: 0
   DragMode: 0
-  SignatureOfBuildMethod: Unit unit
+  SignatureOfBuildMethod: Model.Unit unit
   ButtonsCallOnChanged: 1
   OnChangedCallRebuild: 1
   SuppressAnyGesturesForOwners: 0

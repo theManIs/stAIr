@@ -54,10 +54,10 @@ namespace Hub_UI
             SubscribeOnChanged(imTrait2);
         }
         ///<summary>Data</summary>
-        public Unit unit{ get; private set; }
+        public Model.Unit unit{ get; private set; }
         
         [VisibleInGraph(false)]
-        public void Build(Unit unit)
+        public void Build(Model.Unit unit)
         {
             this.unit = unit;
             OnBuildSafe(true);

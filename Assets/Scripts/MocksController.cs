@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,14 @@ public class MocksController : MonoBehaviour
     void Start()
     {
         //generate units
-        var units = new Units();
+        var units = Player.Instance.Units;
+        units.Clear();
         for (int i = 0; i < 10; i++)
         {
             units.Add(CreateUnit());
         }
 
-        Bus.Units.Publish(units);
+        Bus.PlayerUnitsChanged += true;
 
         //generate units to sell
         var unitsToSell = new List<Unit>();
@@ -29,73 +31,25 @@ public class MocksController : MonoBehaviour
 
     private Unit CreateUnit()
     {
-        var res = new Unit { Name = UnitNames[UnityEngine.Random.Range(0, UnitNames.Length)], IconIndex = UnityEngine.Random.Range(0, 100) };
+        var res = new Unit { Name = Database.UnitNameList[UnityEngine.Random.Range(0, Database.UnitNameList.Count)], IconIndex = UnityEngine.Random.Range(0, 100) };
+
+        //init
+        Database.InitUnit(res);
 
         //create traits of different groups
-        res.Traits.Clear();
+        res.Perks.Clear();
 
-        while (res.Traits.Count < 3)
+        while (res.Perks.Count < 3)
         {
-            var trait = PersonTrait.PersonTraits[UnityEngine.Random.Range(0, PersonTrait.PersonTraits.Count)];
-            if (!res.Traits.Any(t => t.Group == trait.Group))
-                res.Traits.Add(trait);
+            var trait = Database.PerkList[UnityEngine.Random.Range(0, Database.PerkList.Count)];
+            if (!res.Perks.Any(t => t.Group == trait.Group))
+                res.Perks.Add(trait);
         }
 
-        //apply traits
-        foreach (var trait in res.Traits)
-            trait.Apply(res);
+        //apply perks
+        foreach (var perk in res.Perks)
+            perk.ApplyEffect(res);
 
         return res;
     }
-
-    static string[] UnitNames = new[]
-{
-"Алан",
-"Морган",
-"Алекс",
-"Никки",
-"Алексис",
-"Ноэль",
-"Блэр",
-"Оливер",
-"Бобби",
-"Робби",
-"Вайолет",
-"Робин",
-"Вэл",
-"Рэй",
-"Гейл",
-"Саймон",
-"Даррен",
-"Сидни",
-"Дарси",
-"Стивен",
-"Джеймс",
-"Сэм",
-"Джеки",
-"Тейлор",
-"Диллон",
-"Тео",
-"Дэнни",
-"Тони",
-"Каллум",
-"Уэйн",
-"Кейси",
-"Финн",
-"Кори",
-"Хью",
-"Крис",
-"Чарли",
-"Лесли",
-"Шеннон",
-"Ли",
-"Эдди",
-"Макс",
-"Элис",
-"Мел",
-"Энди",
-"Меттью",
-"Эшли",
-"Микки"
-};
 }

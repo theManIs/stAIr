@@ -19,7 +19,7 @@ namespace Hub_UI
 
             str = Regex.Replace(str, @"%NAME%", (match) =>
             {
-                return (Bus.Units.Value.GetRnd(rnd)?.Name) ?? "Mr.Null";
+                return (Player.Instance.Units.GetRnd(rnd)?.Name) ?? "Mr.Null";
             });
             return str;
         }
