@@ -62,6 +62,8 @@ namespace CometUI
         public static LinkedList<BaseView> BackStack => Instance?.backStack;
         /// <summary>Stack of opened modal (fullscreen fade) views</summary>
         public static LinkedList<BaseView> FullScreenFadeStack => Instance?.fullScreenFadeStack;
+        /// <summary>Is there any opened fullscreen window?</summary>
+        public static bool IsAnyFullScreenFadeOpened => Instance?.fullScreenFadeStack.Count > 0;
 
         private Queue<Action> lateUpdateQueue = new Queue<Action>();
 

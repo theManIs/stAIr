@@ -68,6 +68,10 @@ namespace Assets.Controllers.TurnShifterController
 
         protected void Update()
         {
+            //block any interaction while fullscreen window is opened
+            if (Bus.IsAnyFullScreenWindowOpened)
+                return;
+
             GetHighlighted();
         }
     }

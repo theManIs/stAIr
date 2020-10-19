@@ -67,6 +67,10 @@ namespace Assets.Components.Level2.TurnShifter.Scripts
 
         private void OnMouseDown()
         {
+            //block any interaction while fullscreen window is opened
+            if (Bus.IsAnyFullScreenWindowOpened)
+                return;
+
             if (!SelectBlock)
             {
                 // Toggle selection of this
@@ -107,6 +111,10 @@ namespace Assets.Components.Level2.TurnShifter.Scripts
 
         private void Update()
         {
+            //block any interaction while fullscreen window is opened
+            if (Bus.IsAnyFullScreenWindowOpened)
+                return;
+
             if (!SelectBlock)
             {
                 // Deselect units
