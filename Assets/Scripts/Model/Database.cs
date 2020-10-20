@@ -15,6 +15,8 @@ namespace Model
         public static readonly List<Module> Modules = new List<Module>();
         public static readonly List<Quest> Quests = new List<Quest>();
 
+        public static readonly Dictionary<Rarity, RarityInfo> RarityToInfo = new Dictionary<Rarity, RarityInfo>();
+
         static Database()
         {
             //build database
@@ -24,6 +26,7 @@ namespace Model
             Armor();
             Module();
             Quest();
+            Common();
         }
 
         #region Add methods
@@ -100,6 +103,11 @@ namespace Model
             Quests.Last().Variants.Last().Results.Add(result);
         }
 
+        static void InitRarity(Rarity rarity, int chance, string name)
+        {
+            RarityToInfo[rarity] = new RarityInfo { Chance = chance, Name = name };
+        }
+
         #endregion
 
         static partial void Perk();
@@ -108,5 +116,6 @@ namespace Model
         static partial void Armor();
         static partial void Module();
         static partial void Quest();
+        static partial void Common();
     }
 }

@@ -19,8 +19,7 @@ namespace Hub_UI
             //Data: Unit unit
             //copy data to UI controls here
             Set(txName, unit.Name);
-            var faces = GameSettings.Instance.GameResources.Faces;
-            Set(imIcon, faces[unit.IconIndex % faces.Length]);
+            Set(imIcon, GameSettings.Instance.GetFace(unit.IconIndex));
             Set(txLevel, "Уровень: " + unit.Level);
             Set(txExp, unit.Experience.ToString("0.") + "/100");
             Set(txHealth, unit.Health.ToString("0."));

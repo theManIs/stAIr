@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class MocksController : MonoBehaviour
 {
+    static System.Random rnd = new System.Random();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,14 +29,25 @@ public class MocksController : MonoBehaviour
             unitsToSell.Add(CreateUnit());
 
         Bus.UnitsToSell.Publish(unitsToSell);
+
+        //generate items to sell
+        var items = new List<IItem>();
+        items.AddRange(Database.Weapons);
+        items.AddRange(Database.Armors);
+        items.AddRange(Database.Modules);
+        var probs = items.Select(item => Database.RarityToInfo[item.Rarity].Chance).ToList();
+        var sum = probs.Sum();
+        var itemsToSell = new HashSet<IItem>();
+
+        while (itemsToSell.Count < 8)
+            itemsToSell.Add(items.GetRnd(probs, rnd, sum));
+
+        Bus.ItemsToSell.Publish(itemsToSell.ToList());
     }
 
     private Unit CreateUnit()
     {
         var res = new Unit { Name = Database.UnitNames[UnityEngine.Random.Range(0, Database.UnitNames.Count)], IconIndex = UnityEngine.Random.Range(0, 100) };
-
-        //init
-        Database.InitUnit(res);
 
         //create traits of different groups
         res.Perks.Clear();

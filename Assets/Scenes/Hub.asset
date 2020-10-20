@@ -80,11 +80,14 @@ MonoBehaviour:
       - fieldName: This
         node: {fileID: 8484985510513226383}
         reroutePoints: []
+      - fieldName: This
+        node: {fileID: 1317014102768949971}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  size: {x: 150, y: 141}
+  size: {x: 150, y: 146}
   rt: {fileID: 0}
 --- !u!114 &-3873652434775969851
 MonoBehaviour:
@@ -127,11 +130,14 @@ MonoBehaviour:
       - fieldName: This
         node: {fileID: -3188561109328153981}
         reroutePoints: []
+      - fieldName: This
+        node: {fileID: 4074606138271348832}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  size: {x: 150, y: 96}
+  size: {x: 150, y: 98}
   rt: {fileID: 0}
 --- !u!114 &-3188561109328153981
 MonoBehaviour:
@@ -203,7 +209,40 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  size: {x: 150, y: 126}
+  size: {x: 150, y: 130}
+  rt: {fileID: 0}
+--- !u!114 &-2212026079728183026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660afd12107cb6b4eacb62f19e9f8daf, type: 3}
+  m_Name: PlayerInfoPanel
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 392, y: -56}
+  ports:
+    keys:
+    - This
+    values:
+    - _portType: 
+      _fieldName: This
+      _node: {fileID: -2212026079728183026}
+      _typeQualifiedName: CometUI.BindInputPort, CometUI_Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Bind
+        node: {fileID: -761897658749659283}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  size: {x: 150, y: 82}
   rt: {fileID: 0}
 --- !u!114 &-1091890845282892478
 MonoBehaviour:
@@ -247,7 +286,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  size: {x: 150, y: 96}
+  size: {x: 150, y: 98}
   rt: {fileID: 0}
 --- !u!114 &-761897658749659283
 MonoBehaviour:
@@ -267,6 +306,7 @@ MonoBehaviour:
     keys:
     - This
     - btBuy
+    - Bind
     values:
     - _portType: 
       _fieldName: This
@@ -291,7 +331,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  size: {x: 150, y: 96}
+    - _portType: 
+      _fieldName: Bind
+      _node: {fileID: -761897658749659283}
+      _typeQualifiedName: CometUI.BindOutputPort, CometUI_Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: This
+        node: {fileID: -2212026079728183026}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  size: {x: 150, y: 114}
   rt: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -313,6 +366,124 @@ MonoBehaviour:
   - {fileID: -6832757384658814956}
   - {fileID: 8484985510513226383}
   - {fileID: 7428292431585566323}
+  - {fileID: 4074606138271348832}
+  - {fileID: 1317014102768949971}
+  - {fileID: 7576124424541499631}
+  - {fileID: 1080827104198352142}
+  - {fileID: -2212026079728183026}
+--- !u!114 &1080827104198352142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660afd12107cb6b4eacb62f19e9f8daf, type: 3}
+  m_Name: StatLine
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 776, y: 40}
+  ports:
+    keys:
+    - This
+    values:
+    - _portType: 
+      _fieldName: This
+      _node: {fileID: 1080827104198352142}
+      _typeQualifiedName: CometUI.BindInputPort, CometUI_Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Bind
+        node: {fileID: 7576124424541499631}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  size: {x: 150, y: 82}
+  rt: {fileID: 0}
+--- !u!114 &1317014102768949971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660afd12107cb6b4eacb62f19e9f8daf, type: 3}
+  m_Name: BuyItemPanel
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 392, y: 40}
+  ports:
+    keys:
+    - This
+    - Bind
+    values:
+    - _portType: 
+      _fieldName: This
+      _node: {fileID: 1317014102768949971}
+      _typeQualifiedName: CometUI.BindInputPort, CometUI_Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Bind
+        node: {fileID: -6832757384658814956}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _portType: 
+      _fieldName: Bind
+      _node: {fileID: 1317014102768949971}
+      _typeQualifiedName: CometUI.BindOutputPort, CometUI_Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: This
+        node: {fileID: 7576124424541499631}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  size: {x: 150, y: 98}
+  rt: {fileID: 0}
+--- !u!114 &4074606138271348832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660afd12107cb6b4eacb62f19e9f8daf, type: 3}
+  m_Name: WeaponButton
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -8, y: -216}
+  ports:
+    keys:
+    - This
+    values:
+    - _portType: 
+      _fieldName: This
+      _node: {fileID: 4074606138271348832}
+      _typeQualifiedName: CometUI.BindInputPort, CometUI_Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Bind
+        node: {fileID: -3873652434775969851}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  size: {x: 150, y: 82}
+  rt: {fileID: 0}
 --- !u!114 &7428292431585566323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,7 +515,54 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  size: {x: 150, y: 81}
+  size: {x: 150, y: 82}
+  rt: {fileID: 0}
+--- !u!114 &7576124424541499631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660afd12107cb6b4eacb62f19e9f8daf, type: 3}
+  m_Name: ItemInfo
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 568, y: 40}
+  ports:
+    keys:
+    - This
+    - Bind
+    values:
+    - _portType: 
+      _fieldName: This
+      _node: {fileID: 7576124424541499631}
+      _typeQualifiedName: CometUI.BindInputPort, CometUI_Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Bind
+        node: {fileID: 1317014102768949971}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _portType: 
+      _fieldName: Bind
+      _node: {fileID: 7576124424541499631}
+      _typeQualifiedName: CometUI.BindOutputPort, CometUI_Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: This
+        node: {fileID: 1080827104198352142}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  size: {x: 150, y: 98}
   rt: {fileID: 0}
 --- !u!114 &8484985510513226383
 MonoBehaviour:
@@ -391,5 +609,5 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  size: {x: 150, y: 96}
+  size: {x: 150, y: 98}
   rt: {fileID: 0}

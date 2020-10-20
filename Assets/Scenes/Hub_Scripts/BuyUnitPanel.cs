@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using CometUI;
+using Model;
 
 namespace Hub_UI
 {
@@ -16,11 +17,11 @@ namespace Hub_UI
 
         private void OnBuy()
         {
-            unit.IsSold = true;
-            Bus.UnitsToSell.Publish(Bus.UnitsToSell.Value);
+            if (!Player.Instance.Buy(unit))
+                return;
 
-            Player.Instance.Units.Add(unit);
-            Bus.PlayerUnitsChanged += true;
+            Bus.SoldItems.Value.Add(unit);
+            Bus.SoldItems.Publish(Bus.SoldItems.Value);
 
             Close();
         }
@@ -31,6 +32,9 @@ namespace Hub_UI
             //copy data to UI controls here
             UnitInfo.Build(unit);
             UnitInfo.Show(this);
+
+            Set(btBuy,  "Купить - " + unit.BuyPrice.ToString("0."));
+            SetInteractable(btBuy, unit.BuyPrice <= Player.Instance.Money);
         }
     }
 }

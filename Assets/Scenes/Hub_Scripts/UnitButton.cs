@@ -27,9 +27,10 @@ namespace Hub_UI
             //Data: Unit unit
             //copy data to UI controls here
             Set(txName, unit.Name);
-            var faces = GameSettings.Instance.GameResources.Faces;
-            Set(bt, faces[unit.IconIndex % faces.Length]);
+            Set(bt, GameSettings.Instance.GetFace(unit.IconIndex));
             SetInteractable(bt, isActive);
+
+            //GetComponent<Tooltip>().TextLeft = unit.Name;
         }
     }
 }

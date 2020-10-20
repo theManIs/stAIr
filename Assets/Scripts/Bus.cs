@@ -9,7 +9,11 @@ using UnityEngine;
 class Bus
 {
     public static Signal PlayerUnitsChanged;
+    public static Signal PlayerStorageChanged;
+    public static Signal PlayerMoneyChanged;
     public readonly static State<List<Unit>> UnitsToSell;
+    public readonly static State<List<IItem>> ItemsToSell;
+    public readonly static State<HashSet<object>> SoldItems;
     public static Signal<Quest> ShowQuest;
     public static bool IsAnyFullScreenWindowOpened => UIManager.IsAnyFullScreenFadeOpened;
 
@@ -17,5 +21,7 @@ class Bus
     {
         BusHelper.InitFields<Bus>();
         UnitsToSell.Value = new List<Unit>();
+        ItemsToSell.Value = new List<IItem>();
+        SoldItems.Value = new HashSet<object>();
     }
 }

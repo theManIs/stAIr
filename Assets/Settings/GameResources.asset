@@ -35,3 +35,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dee43b68c20073743943fdbc8a9482d6, type: 3}
   - {fileID: 21300000, guid: acae7c72c92b150449d7a616f7ea33e2, type: 3}
   - {fileID: 21300000, guid: efec113946e2d194581635f72428fa47, type: 3}
+  DefaultWeaponIcon: {fileID: 21300000, guid: 726ae0b926ef1a64db3efafbd3fe2aea, type: 3}
+  DefaultArmorIcon: {fileID: 21300000, guid: ee0d1fce157f6884786a138c91872bd5, type: 3}
+  DefaultModuleIcon: {fileID: 21300000, guid: 669c0bd1fe03c4c4cb6bc22a75a46736, type: 3}
+  CoinsSound: {fileID: 8300000, guid: e3e2ab4876c37ca4090fc507cc956340, type: 3}

@@ -10,21 +10,40 @@ namespace Hub_UI
     partial class BuyPanel : BaseView
     {
         List<Unit> UnitsToSell => Bus.UnitsToSell.Value;
+        List<IItem> ItemsToSell => Bus.ItemsToSell.Value;
+        bool IsSold(object obj) => Bus.SoldItems.Value.Contains(obj);
+        UnitButton[] unitButtons;
+        WeaponButton[] itemButtons;
+
+        public override void Init()
+        {
+            base.Init();
+
+            unitButtons = new[] { pnUnit0, pnUnit1, pnUnit2, pnUnit3 };
+            itemButtons = new[] { pnWeaponButton0, pnWeaponButton1, pnWeaponButton2, pnWeaponButton3, pnWeaponButton4, pnWeaponButton5, pnWeaponButton6, pnWeaponButton7 };
+        }
 
         private void Start()
         {
             //subscribe buttons or events here
-            pnUnit0.Clicked += ShowUnitBuyPanel;
-            pnUnit1.Clicked += ShowUnitBuyPanel;
-            pnUnit2.Clicked += ShowUnitBuyPanel;
-            pnUnit3.Clicked += ShowUnitBuyPanel;
+            Array.ForEach(unitButtons, b => b.Clicked += ShowUnitBuyPanel);
+            Array.ForEach(itemButtons, b => b.Clicked += ShowItemBuyPanel);
 
             Bus.UnitsToSell.Subscribe(this, Rebuild);
+            Bus.ItemsToSell.Subscribe(this, Rebuild);
+            Bus.SoldItems.Subscribe(this, Rebuild);
+        }
+
+        private void ShowItemBuyPanel(IItem item)
+        {
+            BuyItemPanel.Close(noAnimation: true);
+            BuyItemPanel.Build(item);
+            BuyItemPanel.Show(this);
         }
 
         private void ShowUnitBuyPanel(Unit unit)
         {
-            BuyUnitPanel.Hide(noAnimation: true);
+            BuyUnitPanel.Close(noAnimation: true);
             BuyUnitPanel.Build(unit);
             BuyUnitPanel.Show(this);
         }
@@ -32,10 +51,11 @@ namespace Hub_UI
         protected override void OnBuild(bool isFirstBuild)
         {
             //copy data to UI controls here
-            pnUnit0.Build(UnitsToSell[0], !UnitsToSell[0].IsSold);
-            pnUnit1.Build(UnitsToSell[1], !UnitsToSell[1].IsSold);
-            pnUnit2.Build(UnitsToSell[2], !UnitsToSell[2].IsSold);
-            pnUnit3.Build(UnitsToSell[3], !UnitsToSell[3].IsSold);
+            for (int i=0; i < unitButtons.Length; i++)
+                unitButtons[i].Build(UnitsToSell[i], !IsSold(UnitsToSell[i]));
+
+            for (int i = 0; i < itemButtons.Length; i++)
+                itemButtons[i].Build(ItemsToSell[i], !IsSold(ItemsToSell[i]));
         }
     }
 }

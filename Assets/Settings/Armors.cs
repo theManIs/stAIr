@@ -2,6 +2,7 @@
 {
     partial class Database
     {
+        /*ВНИМАНИЕ! Не меняйте порядок слотов, не удаляйте слоты! Это приведет к сбою в сохранениях игрока!*/
         static partial void Armor()
         {
             AddArmor(1, "Легкая броня “Гермес I”", Rarity.Usual, 200, 40, "+1 передвижения +1 уклонения", u => { u.Moving += 1; u.Avoidance += 1; } );

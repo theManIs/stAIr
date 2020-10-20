@@ -2,6 +2,7 @@
 {
     partial class Database
     {
+        /*ВНИМАНИЕ! Не меняйте порядок слотов, не удаляйте слоты! Это приведет к сбою в сохранениях игрока!*/
         static partial void Module()
         {
             AddModule("Граната", Rarity.Usual, 150, 30);

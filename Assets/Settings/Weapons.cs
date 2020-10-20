@@ -2,9 +2,10 @@
 {
     partial class Database
     {
+        /*ВНИМАНИЕ! Не меняйте порядок слотов, не удаляйте слоты! Это приведет к сбою в сохранениях игрока!*/
         static partial void Weapon()
         {
-            AddPistol("Пистолет “Гарпия I ”", Rarity.Usual, 2, 6, 2, 100, 20);
+            AddPistol("Пистолет “Гарпия I”", Rarity.Usual, 2, 6, 2, 100, 20);
             AddPistol("Скорострельный пистолет “Медуза”", Rarity.Rare, 2, 6, 4, 200, 40);
             AddPistol("Пистолет “Тритон”", Rarity.Rare, 3, 6, 3, 200, 40, "-2 дальний бой", u => u.FarFight -= 2);
             AddPistol("Плазменный резак “Сатир II”", Rarity.Rare, 4, 6, 1, 200, 40, "+1 шанс крита", u => u.CriticalChance += 1);

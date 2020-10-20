@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Model
@@ -21,7 +22,18 @@ namespace Model
             {
                 return (Player.Instance.Units.GetRnd(rnd)?.Name) ?? "Mr.Null";
             });
+
+            str = Regex.Replace(str, @" I", (match) =>
+            {
+                return "\x00a0I";
+            });
             return str;
+        }
+
+        public static IEnumerable<string> SplitEffects(this string str)
+        {
+            foreach (Match m in Regex.Matches(str, @"([\+\-]\d+[^\+\-]*)"))
+                yield return m.Value;
         }
     }
 }

@@ -2,8 +2,9 @@
 {
     partial class Database
     {
-        public static void InitUnit(Model.Unit unit)
+        public static void InitUnit(Unit unit)
         {
+            unit.Experience = 1;
             unit.Health = 5;
             unit.Shield = 2;
             unit.Soul = 5;
@@ -12,6 +13,7 @@
             unit.Avoidance = 2;
             unit.CriticalChance = 1;
             unit.Moving = 4;
+            unit.BuyPrice = 200;
         }
     }
 }

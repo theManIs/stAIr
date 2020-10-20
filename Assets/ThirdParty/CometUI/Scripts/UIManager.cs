@@ -772,7 +772,7 @@ namespace CometUI
 
             //find tooltip for obects
             foreach (var obj in allowedGameObjects)
-            if(toolTipsByObjects.TryGetValue(obj, out var tooltip))
+            if(TryGetToolTip(obj, toolTipsByObjects, out var tooltip))
             {
 #if UNITY_STANDALONE || UNITY_WEBGL || UNITY_EDITOR
                 var click = false;// Input.GetMouseButtonDown(0);
@@ -791,6 +791,26 @@ namespace CometUI
             }
 
             CloseToolTip();
+        }
+
+        private bool TryGetToolTip(GameObject obj, Dictionary<GameObject, Tooltip> toolTipsByObjects, out Tooltip tooltip)
+        {
+            while (obj != null)
+            {
+                if(toolTipsByObjects.TryGetValue(obj, out tooltip))
+                    return true;
+
+                if (obj.transform.parent == null)
+                    return false;
+
+                if (obj.GetComponent<BaseView>() != null)
+                    return false;
+
+                obj = obj.transform.parent.gameObject;
+            }
+
+            tooltip = null;
+            return false;
         }
 
         Tooltip currentTooltip;
