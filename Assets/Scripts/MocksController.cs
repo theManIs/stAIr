@@ -31,7 +31,7 @@ public class MocksController : MonoBehaviour
 
     private Unit CreateUnit()
     {
-        var res = new Unit { Name = Database.UnitNameList[UnityEngine.Random.Range(0, Database.UnitNameList.Count)], IconIndex = UnityEngine.Random.Range(0, 100) };
+        var res = new Unit { Name = Database.UnitNames[UnityEngine.Random.Range(0, Database.UnitNames.Count)], IconIndex = UnityEngine.Random.Range(0, 100) };
 
         //init
         Database.InitUnit(res);
@@ -41,7 +41,7 @@ public class MocksController : MonoBehaviour
 
         while (res.Perks.Count < 3)
         {
-            var trait = Database.PerkList[UnityEngine.Random.Range(0, Database.PerkList.Count)];
+            var trait = Database.Perks[UnityEngine.Random.Range(0, Database.Perks.Count)];
             if (!res.Perks.Any(t => t.Group == trait.Group))
                 res.Perks.Add(trait);
         }

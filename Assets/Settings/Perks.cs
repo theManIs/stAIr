@@ -2,7 +2,7 @@
 {
     partial class Database
     {
-        static partial void Perks()
+        static partial void Perk()
         {
             AddPerk(1, "Крепкий", "+3 здоровья", u => u.Health += 3);
             AddPerk(1, "Хрупкий", "-3 здоровья", u => u.Health -= 3);

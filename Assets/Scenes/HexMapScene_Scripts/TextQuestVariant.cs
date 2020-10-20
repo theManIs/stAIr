@@ -20,7 +20,7 @@ namespace HexMapScene_UI
         {
             //Data: QuestVariant variant
             //copy data to UI controls here
-            Set(tx, variant.Text);
+            Set(tx, variant.Description);
         }
     }
 }

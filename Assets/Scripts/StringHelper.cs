@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Hub_UI
+namespace Model
 {
     public static class StringHelper
     {
         static Random rnd = new Random();
 
-        public static string Highlight(this string str)
+        public static string Prepare(this string str)
         {
             str = Regex.Replace(str, @"[\+\-]\d+", (match) =>
             {
@@ -17,7 +17,7 @@ namespace Hub_UI
                     return "<color=green>" + match.Value + "</color>";
             });
 
-            str = Regex.Replace(str, @"%NAME%", (match) =>
+            str = Regex.Replace(str, @"%UNIT%", (match) =>
             {
                 return (Player.Instance.Units.GetRnd(rnd)?.Name) ?? "Mr.Null";
             });

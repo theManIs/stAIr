@@ -10,7 +10,7 @@ class Bus
 {
     public static Signal PlayerUnitsChanged;
     public readonly static State<List<Unit>> UnitsToSell;
-    public static State<int> ShowTextQuest;
+    public static Signal<Quest> ShowQuest;
     public static bool IsAnyFullScreenWindowOpened => UIManager.IsAnyFullScreenFadeOpened;
 
     static Bus()
@@ -18,17 +18,4 @@ class Bus
         BusHelper.InitFields<Bus>();
         UnitsToSell.Value = new List<Unit>();
     }
-}
-
-class Player
-{
-    public static Player Instance;
-
-    static Player()
-    {
-        Instance = new Player();    
-    }
-
-    /// <summary>Units of Player</summary>
-    public List<Unit> Units = new List<Unit>();
 }

@@ -34,10 +34,10 @@ namespace HexMapScene_UI
             SubscribeOnChanged(btClose);
         }
         ///<summary>Data</summary>
-        public TextQuest quest{ get; private set; }
+        public Model.Quest quest{ get; private set; }
         
         [VisibleInGraph(false)]
-        public void Build(TextQuest quest)
+        public void Build(Model.Quest quest)
         {
             this.quest = quest;
             OnBuildSafe(true);

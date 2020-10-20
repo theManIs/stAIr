@@ -28,10 +28,10 @@ namespace HexMapScene_UI
             SubscribeOnChanged(tx);
         }
         ///<summary>Data</summary>
-        public QuestVariant variant{ get; private set; }
+        public Model.QuestVariant variant{ get; private set; }
         
         [VisibleInGraph(false)]
-        public void Build(QuestVariant variant)
+        public void Build(Model.QuestVariant variant)
         {
             this.variant = variant;
             OnBuildSafe(true);

@@ -40,7 +40,7 @@ namespace Hub_UI
         private void BuildTraitIcon(Image im, Perk trait)
         {
             var tt = im.GetComponent<Tooltip>();
-            tt.TextLeft = "<b>" + trait.Name + "</b>\r\n" + trait.Desc.Highlight();
+            tt.TextLeft = "<b>" + trait.Name + "</b>\r\n" + trait.Desc.Prepare();
         }
     }
 }

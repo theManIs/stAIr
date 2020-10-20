@@ -2,7 +2,7 @@
 {
     partial class Database
     {
-        static partial void Weapons()
+        static partial void Weapon()
         {
             AddPistol("Пистолет “Гарпия I ”", Rarity.Usual, 2, 6, 2, 100, 20);
             AddPistol("Скорострельный пистолет “Медуза”", Rarity.Rare, 2, 6, 4, 200, 40);

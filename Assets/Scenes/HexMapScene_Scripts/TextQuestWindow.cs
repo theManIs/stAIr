@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using CometUI;
 using RedBlueGames.Tools.TextTyper;
-using Hub_UI;
+using Model;
+using System.Linq;
 
 namespace HexMapScene_UI
 {
@@ -12,20 +13,20 @@ namespace HexMapScene_UI
     {
         TextTyper typer;
         int phase;
-        QuestResult questResult;
+        Model.QuestResult questResult;
+        [SerializeField] Sprite defaultImage;
 
         public override void Init()
         {
             base.Init();
-            Bus.ShowTextQuest.Subscribe(this, (i) => ShowQuest(i)).CallWhenInactive();
+            Bus.ShowQuest.Subscribe(this, (i) => ShowQuest(i)).CallWhenInactive();
             typer = txDesc.GetComponent<TextTyper>();
             typer.PrintCompleted.AddListener(OnPrintCompleted);
             Subscribe(btClose, () => { phase = 2; Close(); });
         }
 
-        private void ShowQuest(int index)
+        private void ShowQuest(Quest quest)
         {
-            var quest = Resources.Load<TextQuest>("TextQuests/Quest " + index);
             if (quest != null)
             {
                 phase = 0;
@@ -42,9 +43,11 @@ namespace HexMapScene_UI
         protected override void OnBuild(bool isFirstBuild)
         {
             DestroyDynamicallyCreatedChildren();
+            //
+            var image = Resources.Load<Sprite>("Quests/" + quest.Image);
             //copy data to UI controls here
             Set(txName, quest.Name);
-            Set(imImage, quest.Image);
+            Set(imImage, image ?? defaultImage);
             Set(txDesc, "");
             Invoke("StartType", 0.5f);
             SetActive(btClose, false);
@@ -56,11 +59,11 @@ namespace HexMapScene_UI
             {
                 case 0:
                     typer.GetComponent<AudioSource>().Play();
-                    typer.TypeText(quest?.Text ?? "Ooops!");
+                    typer.TypeText(quest?.Description ?? "Ooops!");
                     break;
                 case 1:
                     typer.GetComponent<AudioSource>().Play();
-                    typer.TypeText((questResult?.Text.Highlight() ) ?? "Ooops!");
+                    typer.TypeText((questResult?.FullDescription ) ?? "Ooops!");
                     break;
             }
         }
@@ -71,7 +74,13 @@ namespace HexMapScene_UI
             switch(phase)
             {
                 case 0:
-                    foreach (var variant in quest.Variants)
+                    var varinats = quest.GenerateVariants().ToList();
+                    if (varinats.Count == 0)
+                    {
+                        SetActive(btClose, true);
+                        return;
+                    }
+                    foreach (var variant in varinats)
                     {
                         var v = Instantiate(pnTextQuestVariant);
                         v.Build(variant);
@@ -88,7 +97,7 @@ namespace HexMapScene_UI
         private void UserSelectedVariant(QuestVariant variant)
         {
             phase = 1;
-            questResult = quest.OnPlayerSelectedVariant(variant);
+            questResult = quest.GenerateResult(variant);
             Rebuild();
         }
     }

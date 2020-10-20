@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using CometUI;
 using UnityEngine.SceneManagement;
+using Model;
 
 namespace HexMapScene_UI
 {
@@ -19,9 +20,9 @@ namespace HexMapScene_UI
         private void OpenTextQuest()
         {
             var index = GetInt(ifQuestIndex);
-            if (index <= 0)
-                index = 1;
-            Bus.ShowTextQuest += index;
+            if (index < 0 || index >= Database.Quests.Count)
+                return;
+            Bus.ShowQuest += Database.Quests[index];
         }
 
         protected override void OnBuild(bool isFirstBuild)

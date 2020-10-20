@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Model
 {
-    class Units : List<Unit>
-    {
-    }
-
-
     class Unit
     {
         public string Name;
@@ -24,28 +18,12 @@ namespace Model
         public float CriticalChance = 5;
         public float Moving = 5;
 
-        public decimal Price;
+        public float Price;
         public bool IsSold;
+
         public List<Perk> Perks = new List<Perk>();
-    }
-
-    class Perk
-    {
-        public int Id;
-        public string Name;
-        public string Desc;
-        public string IconName => "Perk " + Id;
-        public int Group;
-        public Action<Unit> ApplyEffect;
-
-        public Perk(int id, string name, string desc, int group, Action<Unit> effect)
-        {
-            Id = id;
-            Name = name;
-            Desc = desc;
-            Group = group;
-            ApplyEffect = effect;
-        }
-
+        public List<Weapon> Weapons = new List<Weapon>();
+        public List<Armor> Armors = new List<Armor>();
+        public List<Module> Modules = new List<Module>();
     }
 }

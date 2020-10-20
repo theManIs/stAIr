@@ -2,7 +2,7 @@
 {
     partial class Database
     {
-        static partial void UnitNames()
+        static partial void UnitName()
         {
             AddName("Алан");
             AddName("Морган");
