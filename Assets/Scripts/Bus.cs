@@ -10,7 +10,9 @@ class Bus
 {
     public static Signal PlayerUnitsChanged;
     public static Signal PlayerStorageChanged;
+    public static Signal<Unit> UnitSlotChanged;
     public static Signal PlayerMoneyChanged;
+    public static Signal<IItem> ShowItemInfo;
     public readonly static State<List<Unit>> UnitsToSell;
     public readonly static State<List<IItem>> ItemsToSell;
     public readonly static State<HashSet<object>> SoldItems;

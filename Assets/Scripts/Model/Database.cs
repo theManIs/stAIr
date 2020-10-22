@@ -14,8 +14,12 @@ namespace Model
         public static readonly List<Armor> Armors = new List<Armor>();
         public static readonly List<Module> Modules = new List<Module>();
         public static readonly List<Quest> Quests = new List<Quest>();
+        public static readonly List<MissionGoalInfo> MissionGoals = new List<MissionGoalInfo>();
+        public static readonly List<MissionTypeInfo> MissionTypeInfos = new List<MissionTypeInfo>();
+        public static readonly List<MissionDescription> MissionDescriptions = new List<MissionDescription>();
 
         public static readonly Dictionary<Rarity, RarityInfo> RarityToInfo = new Dictionary<Rarity, RarityInfo>();
+        public static readonly Dictionary<SupplyType, SupplyInfo> SupplyToInfo = new Dictionary<SupplyType, SupplyInfo>();
 
         static Database()
         {
@@ -27,6 +31,7 @@ namespace Model
             Module();
             Quest();
             Common();
+            Mission();
         }
 
         #region Add methods
@@ -108,6 +113,29 @@ namespace Model
             RarityToInfo[rarity] = new RarityInfo { Chance = chance, Name = name };
         }
 
+        static void InitSupply(SupplyType type, int buyPrice)
+        {
+            SupplyToInfo[type] = new SupplyInfo { BuyPrice = buyPrice };
+        }
+
+        static void AddMissionGoal(MissionGoal goal, string name, string prizeDescription, Action<Player> onSuccess = null, Action<Player> onFail = null)
+        {
+            var id = MissionGoals.Count;
+            MissionGoals.Add(new MissionGoalInfo {Id = id, Goal = goal, Name = name, PrizeDescription = prizeDescription, OnSuccess = onSuccess, OnFail = onFail });
+        }
+
+        static void AddMissionDescription(MissionGoal goal, string description, Action<Player> onSuccess = null, Action<Player> onFail = null)
+        {
+            var id = MissionDescriptions.Count;
+            MissionDescriptions.Add(new MissionDescription {Goal = goal, Id = id, Description = description, OnSuccess = onSuccess, OnFail = onFail });
+        }
+
+        static void AddMissionType(MissionType type, string name, int prize, Rarity prizeRarity1, int prizeCount1, Rarity prizeRarity2, int prizeCount2, string addPrizeDescription = null, Action<Player> onSuccess = null, Action<Player> onFail = null)
+        {
+            var id = MissionTypeInfos.Count;
+            MissionTypeInfos.Add(new MissionTypeInfo { Id = id, Type = type, Name = name, Prize = prize, PrizeRarity1 = prizeRarity1, PrizeCount1 = prizeCount1, PrizeRarity2 = prizeRarity2, PrizeCount2 = prizeCount2, AddPrizeDescription = addPrizeDescription, OnSuccess = onSuccess, OnFail = onFail });
+        }
+
         #endregion
 
         static partial void Perk();
@@ -117,5 +145,6 @@ namespace Model
         static partial void Module();
         static partial void Quest();
         static partial void Common();
+        static partial void Mission();
     }
 }

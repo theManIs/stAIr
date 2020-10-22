@@ -36,4 +36,13 @@ namespace Model
                 yield return m.Value;
         }
     }
+
+    public static class EnumerableHelper
+    {
+        public static void Foreach<T>(this IEnumerable<T> list, Action<T> action)
+        {
+            foreach (var item in list)
+                action(item);
+        }
+    }
 }

@@ -10,6 +10,8 @@ namespace Hub_UI
 {
     partial class ItemInfo : BaseView
     {
+        [SerializeField] bool showPresentedCount;
+
         private void Start()
         {
             //subscribe buttons or events here
@@ -19,14 +21,17 @@ namespace Hub_UI
         {
             DestroyDynamicallyCreatedChildren();
 
+            if (item == null)
+                return;
+
             //Data: Model.IItem item
             //copy data to UI controls here
             Set(txName, item.Name.Prepare());
             Set(imIcon, GameSettings.Instance.GetIcon(item));
             Set(txRarity, Database.RarityToInfo[item.Rarity].Name);
-            var itemCount = Player.Instance.GetItemsCount(item);
-            Set(txInStorage, "Уже есть: " + itemCount.ToString());
-            SetActive(txInStorage, itemCount > 0);
+            var itemCount = Player.Instance.GetTotalItemsCount(item);
+            Set(txInStorage, "В xранилище: " + itemCount.ToString());
+            SetActive(txInStorage, itemCount > 0 && showPresentedCount);
             if (item is Weapon w) BuildStats(w);
             if (item is Armor a) BuildStats(a);
             if (item is Module m) BuildStats(m);

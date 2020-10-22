@@ -111,5 +111,6 @@ MonoBehaviour:
   OnChangedCallRebuild: 0
   SuppressAnyGesturesForOwners: 0
   SuppressBack: 0
-  CreateCanvas: 1
-  OverrideSorting: 0
+  CreateCanvas: 0
+  OverrideSorting: 1
+  CloseOwnerOnTap: 0

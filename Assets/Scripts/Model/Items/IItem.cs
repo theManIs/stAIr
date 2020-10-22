@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using System;
+
+namespace Model
 {
     interface IItem
     {
@@ -8,5 +10,7 @@
         Rarity Rarity { get; }
         int BuyPrice { get; }
         int SellPrice { get; }
+
+        Action<Unit> ApplyEffect { get; }
     }
 }

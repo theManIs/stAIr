@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using CometUI;
+using Model;
 
 namespace Hub_UI
 {

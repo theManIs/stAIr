@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using System;
+
+namespace Model
 {
     /// <summary>Модуль</summary>
     class Module : IItem
@@ -9,8 +11,8 @@
         public int BuyPrice { get; set; }
         public int SellPrice { get; set; }
 
-        //public string EffectDescription { get; set; }
-        //public Action<Unit> ApplyEffect { get; set; }
+        public string EffectDescription { get; set; }
+        public Action<Unit> ApplyEffect { get; set; }
 
         public string Image => "Module " + Id;
 

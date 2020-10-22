@@ -233,6 +233,7 @@ namespace CometUI
             {
                 var prefab = view.FullscreenFadePrefab ?? Instance.FullscreenFadePrefab;
                 var fade = Instantiate(prefab, view.transform.parent);
+                //fade.Init();
                 var i = view.transform.GetSiblingIndex();
                 fade.transform.SetSiblingIndex(i);
                 Show(fade, view);

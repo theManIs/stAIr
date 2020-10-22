@@ -400,9 +400,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 335, y: -134}
-  m_SizeDelta: {x: 260.4198, y: 54.250916}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 93.44, y: -134}
+  m_SizeDelta: {x: -222.69757, y: 54.250916}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5999914928408839667
 CanvasRenderer:
@@ -534,9 +534,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 335, y: -79.74997}
-  m_SizeDelta: {x: 260.4198, y: 54.250916}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 93.57001, y: -79.74997}
+  m_SizeDelta: {x: -222.44086, y: 54.250916}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5999914929564452636
 CanvasRenderer:
@@ -1066,16 +1066,6 @@ MonoBehaviour:
   CreateCanvas: 1
   txName: {fileID: 0}
   imIcon: {fileID: 0}
-  txLevel: {fileID: 0}
-  txExp: {fileID: 0}
-  txHealth: {fileID: 0}
-  txenShield: {fileID: 0}
-  txSoul: {fileID: 0}
-  txFarFight: {fileID: 0}
-  txNearFight: {fileID: 0}
-  txAvoidance: {fileID: 0}
-  txCrit: {fileID: 0}
-  txMoving: {fileID: 0}
-  imTrait0: {fileID: 0}
-  imTrait1: {fileID: 0}
-  imTrait2: {fileID: 0}
+  txRarity: {fileID: 0}
+  txInStorage: {fileID: 0}
+  StatLine: {fileID: 0}

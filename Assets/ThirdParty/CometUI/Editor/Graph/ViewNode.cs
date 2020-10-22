@@ -60,7 +60,7 @@ namespace CometUI
 
             foreach (var item in ViewInfo.Members.Values)
             {
-                if (item.Type == typeof(Button).FullName)
+                if (item.Type.IndexOf("Button") >= 0)
                     yield return (typeof(ActionOutputPort), item.Name);
             }
 

@@ -118,6 +118,7 @@ namespace CometUI
         {
             if (dragInfo.DragMode == DragMode.Copy)
             {
+                dragInfo.View.OnCancelDrag();
                 GameObject.Destroy(dragInfo.View.gameObject);
             }
             else
@@ -128,6 +129,7 @@ namespace CometUI
                 dragInfo.View.RectTransform.anchorMin = dragInfo.sourceAnchorsMin;
                 dragInfo.View.RectTransform.anchoredPosition = dragInfo.anchoredPosition;
                 dragInfo.View.RectTransform.sizeDelta = dragInfo.sourceSizeDelta;
+                dragInfo.View.OnCancelDrag();
             }
         }
 

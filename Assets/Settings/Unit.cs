@@ -4,7 +4,7 @@
     {
         public static void InitUnit(Unit unit)
         {
-            unit.Experience = 1;
+            //Задавайте здесь только начальные характеристики юнита. Другие параметры не нужно здесь задавать.
             unit.Health = 5;
             unit.Shield = 2;
             unit.Soul = 5;
@@ -13,6 +13,7 @@
             unit.Avoidance = 2;
             unit.CriticalChance = 1;
             unit.Moving = 4;
+
             unit.BuyPrice = 200;
         }
     }

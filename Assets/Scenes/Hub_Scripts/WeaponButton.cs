@@ -7,6 +7,7 @@ using Model;
 
 namespace Hub_UI
 {
+    /// <summary>Отображение Item в окне продажи</summary>
     partial class WeaponButton : BaseView
     {
         [SerializeField] Sprite defaultIcon;

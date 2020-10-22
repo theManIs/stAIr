@@ -43,6 +43,16 @@ public class MocksController : MonoBehaviour
             itemsToSell.Add(items.GetRnd(probs, rnd, sum));
 
         Bus.ItemsToSell.Publish(itemsToSell.ToList());
+
+        //generate player's items
+        Player.Instance.StorageItems.Add(Database.Armors[0]);
+        Player.Instance.StorageItems.Add(Database.Weapons[0]);
+        Player.Instance.StorageItems.Add(Database.Weapons[0]);
+        Player.Instance.StorageItems.Add(Database.Weapons[1]);
+        Player.Instance.StorageItems.Add(Database.Modules[0]);
+        Player.Instance.StorageItems.Add(Database.Modules[1]);
+        Player.Instance.StorageItems.Add(Database.Modules[2]);
+        Player.Instance.StorageItems.Add(Database.Weapons[0]);
     }
 
     private Unit CreateUnit()

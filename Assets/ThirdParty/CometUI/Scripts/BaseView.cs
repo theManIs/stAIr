@@ -821,6 +821,7 @@ namespace CometUI
 
         public event Action<BaseView, BaseView> Dropped;
         public event Action<BaseView> StartDrag;
+        public event Action<BaseView> CancelDrag;
 
         /// <summary>This method is calling when other view is dragged over the view</summary>
         public virtual bool CanDropIn(BaseView draggedView)
@@ -851,6 +852,12 @@ namespace CometUI
         public virtual void OnStartDrag()
         {
             StartDrag?.Invoke(this);
+        }
+
+        /// <summary>This method is calling when the view fail dragging</summary>
+        public virtual void OnCancelDrag()
+        {
+            CancelDrag?.Invoke(this);
         }
 
         #endregion
