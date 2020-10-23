@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace CometUI
@@ -43,6 +44,65 @@ namespace CometUI
             res.Sequence = Sequence.Select(a=>(SingleAnimation)a.CreateInstance()).ToList();
             return res;
         }
+
+        #region Play
+
+        public AnimationPlayer.AnimatedItem Play(Component comp, Action onDone = null, bool forcedStopPreviousAnimation = true, float timeScale = 1, int repeatCount = 1)
+        {
+            return Play(comp, onDone, forcedStopPreviousAnimation, timeScale, repeatCount);
+        }
+
+        public AnimationPlayer.AnimatedItem Play(GameObject obj, Animation anim, Action onDone = null, bool forcedStopPreviousAnimation = true, float timeScale = 1, int repeatCount = 1)
+        {
+            return Play(obj.transform as RectTransform, onDone, forcedStopPreviousAnimation, timeScale, repeatCount);
+        }
+
+        public IEnumerator PlayCoroutine(Component comp, Animation anim, bool forcedStopPreviousAnimation = true, float timeScale = 1, int repeatCount = 1)
+        {
+            return PlayCoroutine(comp.transform as RectTransform, anim, forcedStopPreviousAnimation, timeScale, repeatCount);
+        }
+
+        public IEnumerator PlayCoroutine(GameObject obj, Animation anim, bool forcedStopPreviousAnimation = true, float timeScale = 1, int repeatCount = 1)
+        {
+            return PlayCoroutine(obj.transform as RectTransform, anim, forcedStopPreviousAnimation, timeScale, repeatCount);
+        }
+
+        public async Task PlayAsync(Component comp, Animation anim, bool forcedStopPreviousAnimation = true, float timeScale = 1, int repeatCount = 1)
+        {
+            await PlayAsync(comp.transform as RectTransform, anim, forcedStopPreviousAnimation, timeScale, repeatCount);
+        }
+
+        public async Task PlayAsync(GameObject obj, Animation anim, bool forcedStopPreviousAnimation = true, float timeScale = 1, int repeatCount = 1)
+        {
+            await PlayAsync(obj.transform as RectTransform, anim, forcedStopPreviousAnimation, timeScale, repeatCount);
+        }
+
+        public AnimationPlayer.AnimatedItem Play(RectTransform rt, Action onDone = null, bool forcedStopPreviousAnimation = true, float timeScale = 1, int repeatCount = 1)
+        {
+            return AnimationPlayer.Play(rt, this, onDone, forcedStopPreviousAnimation, timeScale, repeatCount);
+        }
+
+        public IEnumerator PlayCoroutine(RectTransform rt, Animation anim, bool forcedStopPreviousAnimation = true, float timeScale = 1, int repeatCount = 1)
+        {
+            return AnimationPlayer.PlayCoroutine(rt, this, forcedStopPreviousAnimation, timeScale, repeatCount);
+        }
+
+        public async Task PlayAsync(RectTransform rt, Animation anim, bool forcedStopPreviousAnimation = true, float timeScale = 1, int repeatCount = 1)
+        {
+            await AnimationPlayer.PlayAsync(rt, this, forcedStopPreviousAnimation, timeScale, repeatCount);
+        }
+
+        public void StopAnimation(RectTransform rt, Action onDone = null)
+        {
+            AnimationPlayer.StopAnimation(rt, onDone);
+        }
+
+        public IEnumerator StopAnimationCoroutine(RectTransform rt, Action onDone = null)
+        {
+            return AnimationPlayer.StopAnimationCoroutine(rt, onDone);
+        }
+
+        #endregion
     }
 
     [Serializable]

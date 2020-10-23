@@ -113,15 +113,15 @@ namespace Model
             RarityToInfo[rarity] = new RarityInfo { Chance = chance, Name = name };
         }
 
-        static void InitSupply(SupplyType type, int buyPrice)
+        static void InitSupply(SupplyType type, int maxCount, int buyPrice)
         {
-            SupplyToInfo[type] = new SupplyInfo { BuyPrice = buyPrice };
+            SupplyToInfo[type] = new SupplyInfo { BuyPrice = buyPrice, MaxCount = maxCount };
         }
 
-        static void AddMissionGoal(MissionGoal goal, string name, string prizeDescription, Action<Player> onSuccess = null, Action<Player> onFail = null)
+        static void AddMissionGoal(MissionGoal goal, string name, int prize, string addPrizeDescription = null, Action<Player> onSuccess = null, Action<Player> onFail = null)
         {
             var id = MissionGoals.Count;
-            MissionGoals.Add(new MissionGoalInfo {Id = id, Goal = goal, Name = name, PrizeDescription = prizeDescription, OnSuccess = onSuccess, OnFail = onFail });
+            MissionGoals.Add(new MissionGoalInfo {Id = id, Prize = prize, Goal = goal, Name = name, AddPrizeDescription = addPrizeDescription, OnSuccess = onSuccess, OnFail = onFail });
         }
 
         static void AddMissionDescription(MissionGoal goal, string description, Action<Player> onSuccess = null, Action<Player> onFail = null)

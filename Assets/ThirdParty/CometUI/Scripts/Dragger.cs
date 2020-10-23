@@ -34,7 +34,7 @@ namespace CometUI
             //
             BaseView acceptor = GetAcceptor();
 
-            if (acceptor != null)
+            if (acceptor != null && acceptor.ConfirmDropIn(dragInfo.View))
             {
                 //remove from prev owner
                 if (dragInfo.DragMode == DragMode.Move)
@@ -102,6 +102,8 @@ namespace CometUI
             public Vector2 sourceSizeDelta;
             public Vector2 sourceAnchorsMax;
             public Vector2 sourceAnchorsMin;
+            public Vector2 sourceOffsetMax;
+            public Vector2 sourceOffsetMin;
         }
 
         private BaseView GetAcceptor()
@@ -127,6 +129,8 @@ namespace CometUI
                 dragInfo.View.transform.SetSiblingIndex(dragInfo.sourceSiblingIndex);
                 dragInfo.View.RectTransform.anchorMax = dragInfo.sourceAnchorsMax;
                 dragInfo.View.RectTransform.anchorMin = dragInfo.sourceAnchorsMin;
+                dragInfo.View.RectTransform.offsetMax = dragInfo.sourceOffsetMax;
+                dragInfo.View.RectTransform.offsetMin = dragInfo.sourceOffsetMax;
                 dragInfo.View.RectTransform.anchoredPosition = dragInfo.anchoredPosition;
                 dragInfo.View.RectTransform.sizeDelta = dragInfo.sourceSizeDelta;
                 dragInfo.View.OnCancelDrag();
@@ -146,6 +150,8 @@ namespace CometUI
             dragInfo.sourceSiblingIndex = source.transform.GetSiblingIndex();
             dragInfo.sourceAnchorsMax = source.RectTransform.anchorMax;
             dragInfo.sourceAnchorsMin = source.RectTransform.anchorMin;
+            dragInfo.sourceOffsetMax = source.RectTransform.offsetMax;
+            dragInfo.sourceOffsetMin = source.RectTransform.offsetMin;
             dragInfo.anchoredPosition = source.RectTransform.anchoredPosition;
             dragInfo.sourceSizeDelta = source.RectTransform.sizeDelta;
             //get canvas
@@ -194,6 +200,7 @@ namespace CometUI
 
             //adjust size
             var size = view.RectTransform.rect.size;
+            var isFill = view.RectTransform.anchorMin == Vector2.zero && view.RectTransform.anchorMax == Vector2.one;
             var grid = parent.GetComponent<GridLayoutGroup>();
             if (grid)
             {
@@ -202,11 +209,13 @@ namespace CometUI
                 grid.enabled = false;
             }
             else
-            if (size.x == 0)
-                size.x = parent.rect.width;
-            else
-            if (size.y == 0)
-                size.y = parent.rect.height;
+            {
+                if (size.x == 0 || isFill)
+                    size.x = parent.rect.width;
+
+                if (size.y == 0 || isFill)
+                    size.y = parent.rect.height;
+            }
 
             //add transparency
             if (!view.GetComponent<CanvasGroup>())

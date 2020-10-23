@@ -830,16 +830,23 @@ namespace CometUI
             return false;
         }
 
+        /// <summary>This method is calling before other view try drop into the view. It should return TRUE if drop accepted, return FALSE to cancel drop</summary>
+        public virtual bool ConfirmDropIn(BaseView draggedView)
+        {
+            //override this method and return True if you want accept dragged view into this view
+            return true;
+        }
+
         /// <summary>This method is calling when other view try drop into the view</summary>
         public virtual void DropIn(BaseView draggedView)
         {
-            //override this method and return True if you want accept dragged view into this view
+            //override this method to accept dragged view into this view
         }
 
         /// <summary>This method is calling when my children is moved to other view</summary>
         public virtual void DropOut(BaseView draggedView, BaseView acceptor)
         {
-            //override this method and return True if you want accept dragged view into this view
+            //override this method
         }
 
         /// <summary>This method is calling when the view is successfully dropped into other view</summary>

@@ -96,9 +96,9 @@ namespace Model
 
         public void SellFromSlot(Unit unit, IItem item, int slotIndex)
         {
-            if (item is Armor armor) SellFromSlot(unit, unit.Armors, slotIndex);
-            if (item is Module module) SellFromSlot(unit, unit.Modules, slotIndex);
-            if (item is Weapon weapon) SellFromSlot(unit, unit.Weapons, slotIndex);
+            if (item is Armor armor) SellFromSlot(unit, unit.ArmorSlots, slotIndex);
+            if (item is Module module) SellFromSlot(unit, unit.ModuleSlots, slotIndex);
+            if (item is Weapon weapon) SellFromSlot(unit, unit.WeaponSlots, slotIndex);
 
         }
 

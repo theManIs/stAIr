@@ -24,14 +24,18 @@ namespace Model
 
         public List<Perk> Perks { get; } = new List<Perk>();
 
-        public IEnumerable<IItem> Items => 
-            Armors.Cast<IItem>().Where(a => a != null).Union
-            (Modules.Cast<IItem>().Where(a => a != null)).Union
-            (Weapons.Cast<IItem>().Where(a => a != null));
+        public IEnumerable<IItem> Items =>
+            Armors.Cast<IItem>().Union
+            (Modules.Cast<IItem>()).Union
+            (Weapons.Cast<IItem>());
 
-        public Armor[] Armors { get; } = new Armor[1];
-        public Module[] Modules { get; } = new Module[3];
-        public Weapon[] Weapons { get; } = new Weapon[2];
+        public IEnumerable<Armor> Armors => ArmorSlots.Where(a => a != null);
+        public IEnumerable<Module> Modules => ModuleSlots.Where(m => m != null);
+        public IEnumerable<Weapon> Weapons => WeaponSlots.Where(w => w != null);
+
+        public Armor[] ArmorSlots { get; } = new Armor[1];
+        public Module[] ModuleSlots { get; } = new Module[3];
+        public Weapon[] WeaponSlots { get; } = new Weapon[2];
 
         public Unit()
         {
@@ -56,9 +60,9 @@ namespace Model
             if (!Player.Instance.StorageItems.Contains(item))
                 return false;
 
-            if (item is Armor armor) return ToSlot(Armors, armor, slotIndex);
-            if (item is Module module) return ToSlot(Modules, module, slotIndex);
-            if (item is Weapon weapon) return ToSlot(Weapons, weapon, slotIndex);
+            if (item is Armor armor) return ToSlot(ArmorSlots, armor, slotIndex);
+            if (item is Module module) return ToSlot(ModuleSlots, module, slotIndex);
+            if (item is Weapon weapon) return ToSlot(WeaponSlots, weapon, slotIndex);
 
             return false;
         }
@@ -91,9 +95,9 @@ namespace Model
             if (fromIndex == toIndex)
                 return false;
 
-            if (item is Armor armor) return ChangeSlot(Armors, fromIndex, toIndex);
-            if (item is Module module) return ChangeSlot(Modules, fromIndex, toIndex);
-            if (item is Weapon weapon) return ChangeSlot(Weapons, fromIndex, toIndex);
+            if (item is Armor armor) return ChangeSlot(ArmorSlots, fromIndex, toIndex);
+            if (item is Module module) return ChangeSlot(ModuleSlots, fromIndex, toIndex);
+            if (item is Weapon weapon) return ChangeSlot(WeaponSlots, fromIndex, toIndex);
 
             return false;
         }
@@ -117,9 +121,9 @@ namespace Model
             if (!Items.Contains(item))
                 return false;
 
-            if (item is Armor armor) return RemoveFromSlot(Armors, slotIndex);
-            if (item is Module module) return RemoveFromSlot(Modules, slotIndex);
-            if (item is Weapon weapon) return RemoveFromSlot(Weapons, slotIndex);
+            if (item is Armor armor) return RemoveFromSlot(ArmorSlots, slotIndex);
+            if (item is Module module) return RemoveFromSlot(ModuleSlots, slotIndex);
+            if (item is Weapon weapon) return RemoveFromSlot(WeaponSlots, slotIndex);
 
             return false;
         }
@@ -147,9 +151,9 @@ namespace Model
 
         public void SwapWeapons()
         {
-            var w0 = Weapons[0];
-            Weapons[0] = Weapons[1];
-            Weapons[1] = w0;
+            var w0 = WeaponSlots[0];
+            WeaponSlots[0] = WeaponSlots[1];
+            WeaponSlots[1] = w0;
 
             Bus.UnitSlotChanged += this;
         }

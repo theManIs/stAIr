@@ -16,7 +16,7 @@ namespace Hub_UI
         private void Start()
         {
             //subscribe buttons or events here
-            Subscribe(bt, () => Bus.ShowItemInfo += item);
+            Subscribe(bt, () => Bus.ShowItemInfo += item );
             outlineEffect = GetComponentInChildren<UIShadow>();
         }
         

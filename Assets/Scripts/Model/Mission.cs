@@ -19,11 +19,11 @@ namespace Model
         public MissionType MissionType { get; set; }
         public MissionDescription MissionDescription { get; set; }
         public MissionGoalInfo MissionGoal { get; set; }
-        
+
 
         //prize items
-        public IItem[] VisiblePrizeItems { get; set; }
-        public IItem[] InvisiblePrizeItems { get; set; }
+        public IItem[] VisiblePrizeItems { get; set; } = new IItem[0];
+        public IItem[] InvisiblePrizeItems { get; set; } = new IItem[0];
     }
 
     class MissionDescription
@@ -60,7 +60,8 @@ namespace Model
         public int Id { get; set; }
         public MissionGoal Goal { get; set; }
         public string Name { get; set; }
-        public string PrizeDescription { get; set; }
+        public int Prize { get; set; }
+        public string AddPrizeDescription { get; set; }
         public Action<Player> OnSuccess { get; set; }
         public Action<Player> OnFail { get; set; }
     }
@@ -93,6 +94,7 @@ namespace Model
     class SupplyInfo
     {
         public int BuyPrice { get; set; }
+        public int MaxCount { get; set; }
     }
 
     class NextMissionDrafts

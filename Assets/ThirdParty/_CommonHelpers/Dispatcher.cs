@@ -129,6 +129,12 @@ public class Dispatcher : MonoBehaviour
         Enqueue(null, action);
     }
 
+    public static void Enqueue(Action action, float delay)
+    {
+        var time = Time.time + delay;
+        Enqueue(() => Time.time >= time, action);
+    }
+
     public static void Enqueue(Func<bool> executeCondition, Action action)
     {
         lock (Instance._lock)

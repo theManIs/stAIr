@@ -62,12 +62,12 @@ namespace Hub_UI
 
             StoragePanel.Build();
 
-            slArmor.Build(unit, unit.Armors.FirstOrDefault());
-            slModule0.Build(unit, unit.Modules.FirstOrDefault());
-            slModule1.Build(unit, unit.Modules.Skip(1).FirstOrDefault());
-            slModule2.Build(unit, unit.Modules.Skip(2).FirstOrDefault());
-            slWeapon0.Build(unit, unit.Weapons.FirstOrDefault());
-            slWeapon1.Build(unit, unit.Weapons.Skip(1).FirstOrDefault());
+            slArmor.Build(unit, unit.ArmorSlots[0]);
+            slModule0.Build(unit, unit.ModuleSlots[0]);
+            slModule1.Build(unit, unit.ModuleSlots[1]);
+            slModule2.Build(unit, unit.ModuleSlots[2]);
+            slWeapon0.Build(unit, unit.WeaponSlots[0]);
+            slWeapon1.Build(unit, unit.WeaponSlots[1]);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using CometUI;
 using Model;
+using Coffee.UIEffects;
 
 namespace Hub_UI
 {
@@ -31,6 +32,18 @@ namespace Hub_UI
             SetInteractable(bt, isActive);
 
             //GetComponent<Tooltip>().TextLeft = unit.Name;
+        }
+
+        public override void OnStartDrag()
+        {
+            base.OnStartDrag();
+            GetComponentInChildren<UIShadow>().enabled = false;
+        }
+
+        public override void OnCancelDrag()
+        {
+            base.OnCancelDrag();
+            GetComponentInChildren<UIShadow>().enabled = true;
         }
     }
 }

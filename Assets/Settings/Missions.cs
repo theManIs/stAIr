@@ -12,10 +12,10 @@
             AddMissionType(MissionType.Special, "Особое задание", 1200, Rarity.Unique, 1, Rarity.Unique, 2);
 
             //можно описать произвольное число целей (не менее 1 на каждый MissionGoal)
-            AddMissionGoal(MissionGoal.Reconnaissance, "Разведка", "");
-            AddMissionGoal(MissionGoal.Evacuation, "Эвакуация", "+100 кредитов", p => p.Money += 100);
-            AddMissionGoal(MissionGoal.Search, "Поиск груза", "+200 кредитов", p => p.Money += 200);
-            AddMissionGoal(MissionGoal.Kill, "Устранение цели", "+300 кредитов", p => p.Money += 300);
+            AddMissionGoal(MissionGoal.Reconnaissance, "Разведка", 0);
+            AddMissionGoal(MissionGoal.Evacuation, "Эвакуация", 100);
+            AddMissionGoal(MissionGoal.Search, "Поиск груза", 200);
+            AddMissionGoal(MissionGoal.Kill, "Устранение цели", 300);
 
             //можно описать произвольное число описаний для произвольных целей (не менее 1 на каждую цель)
             AddMissionDescription(MissionGoal.Reconnaissance, "Побывать в 60% зон");

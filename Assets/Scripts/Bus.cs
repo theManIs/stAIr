@@ -16,6 +16,7 @@ class Bus
     public readonly static State<List<Unit>> UnitsToSell;
     public readonly static State<List<IItem>> ItemsToSell;
     public readonly static State<HashSet<object>> SoldItems;
+    public static State<Mission> CurrentMission;
     public static Signal<Quest> ShowQuest;
     public static bool IsAnyFullScreenWindowOpened => UIManager.IsAnyFullScreenFadeOpened;
 
