@@ -31,6 +31,10 @@ namespace Assets.Controllers.ShootingBorder
 
         private void Update()
         {
+            //block any interaction while fullscreen window is opened
+            if (Bus.IsAnyFullScreenWindowOpened)
+                return;
+
             CommonUserUpdate();
             PullOnTheTrigger();
             DisplayAccuracyPanel();

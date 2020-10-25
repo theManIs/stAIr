@@ -94,6 +94,10 @@ namespace Assets.Controllers.WaypointController
 
         protected void Update()
         {
+            //block any interaction while fullscreen window is opened
+            if (Bus.IsAnyFullScreenWindowOpened)
+                return;
+
             if (Input.GetMouseButtonDown(0))
             {
                 UserUpdate();
